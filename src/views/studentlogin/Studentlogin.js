@@ -20,6 +20,7 @@ import Aos from 'aos'
 function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
 
    const { logindetails } = useSelector(logindetailSelector)
+   console.log(logindetails,"loginpage")
    const dispatch = useDispatch()
    const initialValues = { email: "", password: "" };
    const [formValues, setFormValues] = useState(initialValues);
@@ -118,7 +119,8 @@ function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
       // Navigate("/studentdashboard")
       var data = JSON.stringify(googleData.profileObj)
       localStorage.setItem("getprofiledata", data)
-      window.location = "/studentdashboard";
+      Navigate("/studentdashboard")
+      // window.location = "/studentdashboard";
       // const reqData = {
       //    email: googleData.profileObj.email,
       //    password: googleData.profileObj.name,

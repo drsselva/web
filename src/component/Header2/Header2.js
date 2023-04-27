@@ -11,24 +11,24 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { IoIosHome, IoMdListBox } from "react-icons/io";
+import Collapse from '@mui/material/Collapse';
 
 
 
 function Header2() {
 
    const Navigate = useNavigate()
-   const [eduCheck,setEduCheck] = useState(false)
+   const [eduCheck, setEduCheck] = useState(false)
 
    useEffect(() => {
       var path = window.location.pathname
       console.log(path.includes("educator"))
-      if(path.includes("educator"))
-      {
+      if (path.includes("educator")) {
          setEduCheck(true)
 
       }
    }, [])
-   
+
 
    const [stateDrawer, setStateDrawer] = React.useState(false);
 
@@ -37,12 +37,33 @@ function Header2() {
       setStateDrawer(open)
    };
 
-   const DrawerMap = [{icon :<span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
-   onClick={() => Navigate("/home")}>
-   <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
-   <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>
-</span>,path:"Home" },{ icon: <IoIosHome />, name: "Home", path: "/home" }, { icon: <IoMdListBox />, name: "Marketplace", path: "/marketplace" }]
+   const DrawerMap = [{
+      icon: <span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
+         onClick={() => Navigate("/home")}>
+         <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
+         <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>
+      </span>, path: "/home"
+   }, 
+   { icon: <IoIosHome />, name: "Home", path: "/home" },
+   { icon: <IoMdListBox />, name: "GRIT LaaS", path: "/gritlasshome" },
+   { icon: <IoMdListBox />, name: "GRIT Talents", path: "", web: "https://www.grittalents.com/" },
+   { icon: <IoIosHome />, name: "Others", sub: [{ icon: <IoMdListBox />, name: "IT Services", path: "/gritlasshome" }, { icon: <IoMdListBox />, name: "Sales", path: "/gritlasshome" }] },
+   { icon: <IoMdListBox />, name: "Contact Us", path: "/contactus" },
+   { icon: <IoMdListBox />, name: "CSR", path: "", web: "https://www.gritfoundation.in/" },
 
+      //    <ListItemButton onClick={handleClick}>
+      //    <ListItemIcon>
+      //      <IoIosHome />
+      //    </ListItemIcon>
+      //    <ListItemText primary="Inbox" />
+      //    {open ? <IoIosHome /> : <IoIosHome />}
+      //  </ListItemButton>
+   ]
+   const [open, setOpen] = React.useState(false);
+
+   const handleClick = () => {
+      setOpen(!open);
+   };
 
 
    const list = (anchor) => (
@@ -50,8 +71,30 @@ function Header2() {
       <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }} role="presentation"
          onKeyDown={() => toggleDrawer(anchor, false)}  >
 
-         {DrawerMap.map((obj, index) => (
-            <List onClick={() => Navigate(obj.path)} >
+         {DrawerMap.map((obj, index) => 'sub' in obj ? (
+            <List  >
+
+               <ListItemButton onClick={handleClick}>
+                  <ListItemIcon>
+                     {obj.icon}
+                  </ListItemIcon>
+                  <ListItemText primary={obj.name} />
+                  {open ? <IoIosHome /> : <IoIosHome />}
+               </ListItemButton>
+               <Collapse in={open} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                     {obj.sub.map((subObj) => <ListItemButton sx={{ pl: 4 }} onClick={() => Navigate(subObj.path)}>
+                        <ListItemIcon>
+                           {subObj.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={subObj.name} />
+                     </ListItemButton>)}
+                  </List>
+               </Collapse>
+
+            </List>
+         ) : (
+            <List onClick={() =>obj.path? Navigate(obj.path):window.location.assign(obj.web)} >
 
                <ListItem key={obj.name} disablePadding>
                   <ListItemButton>
@@ -63,7 +106,9 @@ function Header2() {
                </ListItem>
 
             </List>
-         ))}
+         )
+         
+         )}
       </Box>
 
    );
@@ -76,29 +121,29 @@ function Header2() {
                <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h1>
             </span>
             <nav id="navbar" className="navbar">
-            <ul>
-          <li><a  class="btn-menu two-type" onClick={()=>{Navigate("/gritlasshome")}}>GRIT Studies<span class="hover-txt">GRIT LaaS</span></a></li>
-          <li><a href="https://www.grittalents.com/">GRIT Talents</a></li>          
-          <li class="dropdown"><a href="#"><span>Others</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>              
-              <li class="dropdown"><a href="#"><span>IT Services</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#" onClick={()=>Navigate("/webappdevelopement")}>Web Application Development</a></li>
-                  <li><a href="#" onClick={()=>Navigate("/mobiledevelopement")}>Mobile Application Development & Services</a></li>
-                  <li><a href="# "onClick={()=>Navigate("/outsourcedevelopemtnt")}>Outsourced Development Services</a></li>
-                  <li><a href="#" onClick={()=>Navigate("/mobilefirstdevelopement")}>Mobile First Web Development</a></li>
-                  <li><a href="#"onClick={()=>Navigate("/blockchain")}>Blockchain / Cryptocurrency Development & Support</a></li>
-                  <li><a href="#" onClick={()=>Navigate("/nft")}>NFT / Marketplace DevOps</a></li>
-				</ul>
-              </li>   
-			  <li><a href="#">Sales</a>
-              </li>              
-            </ul>
-          </li>
-          <li><a href="#" onClick={()=>Navigate("/contactus")}>Contact Us</a></li>
-		  <li><a href="https://www.gritfoundation.in/" class="btn-menu">CSR</a></li>
-		  
-        </ul>
+               <ul>
+                  <li><a class="btn-menu two-type" onClick={() => { Navigate("/gritlasshome") }}>GRIT Studies<span class="hover-txt">GRIT LaaS</span></a></li>
+                  <li><a href="https://www.grittalents.com/">GRIT Talents</a></li>
+                  <li class="dropdown"><a href="#"><span>Others</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                     <ul>
+                        <li class="dropdown"><a href="#"><span>IT Services</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                           <ul>
+                              <li><a href="#" onClick={() => Navigate("/webappdevelopement")}>Web Application Development</a></li>
+                              <li><a href="#" onClick={() => Navigate("/mobiledevelopement")}>Mobile Application Development & Services</a></li>
+                              <li><a href="# " onClick={() => Navigate("/outsourcedevelopemtnt")}>Outsourced Development Services</a></li>
+                              <li><a href="#" onClick={() => Navigate("/mobilefirstdevelopement")}>Mobile First Web Development</a></li>
+                              <li><a href="#" onClick={() => Navigate("/blockchain")}>Blockchain / Cryptocurrency Development & Support</a></li>
+                              <li><a href="#" onClick={() => Navigate("/nft")}>NFT / Marketplace DevOps</a></li>
+                           </ul>
+                        </li>
+                        <li><a href="#">Sales</a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li><a href="#" onClick={() => Navigate("/contactus")}>Contact Us</a></li>
+                  <li><a href="https://www.gritfoundation.in/" class="btn-menu">CSR</a></li>
+
+               </ul>
             </nav>
 
 

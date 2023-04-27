@@ -48,6 +48,8 @@ function Educatorlogin() {
                setFormErrors({})
                toast.success("Logged in successfully")
                Navigate("/Educatordashboard")
+               var initialValues = { email: "", password: "" };
+               setFormValues(initialValues)
             }
          })
          .catch((err) => {
@@ -62,7 +64,7 @@ function Educatorlogin() {
       //     setFormErrors(validate(formValues));
 
       //  }
-      Navigate("/educatordashboard")
+      // Navigate("/educatordashboard")
       // setIsSubmit(true);
    };
 

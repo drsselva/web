@@ -30,6 +30,7 @@ function Educatordashboard() {
   const [getprofiles, setgetprofiles] = useState('')
   useEffect(() => {
     var data = localStorage.getItem("getprofiledata")
+    console.log(data, "datadatadata")
     const getprofiledata = JSON.parse(data);
     setgetprofiles(getprofiledata)
   }, [])
@@ -54,9 +55,9 @@ function Educatordashboard() {
               <div className="col-md-3 mt-0">
                 <div className="stu-feature-box">
                   <div className="student-img-wrap text-center">
-                    <img src={getprofiles.imageUrl ? getprofiles.imageUrl : ellipse}
+                    <img src={getprofiles ? getprofiles.imageUrl : ellipse}
                       alt="student" className="img-fluid m-auto mb-4 w-50 rounded-circle" />
-                    <h5 className="mb-0 fs-5">{getprofiles.name ? getprofiles.name : "Name"}</h5>
+                    <h5 className="mb-0 fs-5">{getprofiles ? getprofiles.name : "Name"}</h5>
                     {/* <div className="mb-0 fs-star">
                     <ReactStars
                       count={5}
@@ -82,7 +83,7 @@ function Educatordashboard() {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{getprofiles.email ? getprofiles.email : "alex56@gmail.com"}</a>                  </div>
+                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{getprofiles ? getprofiles.email : "alex56@gmail.com"}</a>                  </div>
                       </div>
                     </div>
                   </li>
@@ -145,13 +146,13 @@ function Educatordashboard() {
 
               <div class="col-md-4 cus-mx-mar d-flex align-items-center">
 
-                {/* <div class="add-btn">
+                <div class="add-btn">
                   <a href="#" class="course-link">
                     <i class="bi bi-plus-lg fs-4"></i>
                     <div class="add-txt">Add</div>
        
                   </a>
-                </div> */}
+                </div>
                 <div class="popular-feature-db position-relative">
                   <a href="#" class="course-link">
                     <div class="popular-icon-db mb-0 d-flex align-items-center">
