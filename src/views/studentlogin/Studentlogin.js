@@ -63,10 +63,10 @@ function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
 
          axios.get("http://44.202.89.70:8989/api/loginUser/" + formValues.email + "/" + formValues.password)
             .then((res) => {
+               toast.success(res.data.message)
                if (res.data.statusCode == '200') {
                   setFormValues(initialValues);
                   setFormErrors({})
-                  toast.success("Logged in successfully")
                   Navigate("/studentdashboard")
                }
                // console.log(res)
@@ -177,7 +177,6 @@ function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
                               <div className="form-group mt-3">
                                  <input type="text" autoComplete className="form-control" onChange={handleChange} name="email" value={formValues.email} placeholder="Email" required />
                                  <p className="text-danger">{formErrors.email}</p>
-
                               </div>
                               <div className="form-group">
                                  <input id="password-field" autoComplete name="password" type={eyeon} onChange={handleChange} className="form-control" value={formValues.password} placeholder="Password" required />

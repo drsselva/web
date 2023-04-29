@@ -43,10 +43,10 @@ function Educatorlogin() {
       axios.get("http://44.202.89.70:8989/api/loginUser/" + formValues.email + "/" + formValues.password)
          .then((res) => {
             console.log(res.data, "sssssssssssssss")
+            toast.success(res.data.message)
             if (res.data.statusCode == '200') {
                setFormValues(initialValues);
                setFormErrors({})
-               toast.success("Logged in successfully")
                Navigate("/Educatordashboard")
                var initialValues = { email: "", password: "" };
                setFormValues(initialValues)

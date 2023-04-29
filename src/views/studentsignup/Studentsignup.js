@@ -65,10 +65,12 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
          axios.post("http://44.202.89.70:8989/api/createUser", data)
             .then((res) => {
                console.log(res)
-
-               setFormValues(initialValues);
-               setFormErrors({})
-               toast.success(res.data)
+               toast.success(res.data.message)
+               if (res.data.message == "User registered successfully.") {
+                  setFormValues(initialValues);
+                  setFormErrors({})
+                  Navigate("/educatorlogin")
+               }
             })
             .catch((err) => {
                toast.error("Somethign went wrong")
@@ -92,25 +94,57 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
       } else if (!regex.test(values.email)) {
          errors.email = "This is not a valid email format!";
       }
-      if (!values.password) {
+      if (!values.name) {
+         errors.name = "Name is required";
+      }
+      if (values.password == "") {
          errors.password = "Password is required";
-      } else if (values.password.length < 4) {
-         errors.password = "Password must be more than 4 characters";
-      } else if (values.password.length > 10) {
+      }
+      else if (values.password.length < 7) {
+         errors.password = "Password must be more than 7 characters";
+      }
+      else if (values.password.length > 10) {
          errors.password = "Password cannot exceed more than 10 characters";
       }
       if (!values.confirmPassword) {
          errors.confirmPassword = "Confirm Password is required";
-      } else if (values.confirmPassword.length < 4) {
-         errors.confirmPassword = "Confirm Password must be more than 4 characters";
-      } else if (values.confirmPassword.length > 10) {
-         errors.confirmPassword = "Confirm Password cannot exceed more than 10 characters";
-      } else if (values.password != values.confirmPassword) {
+      }
+      if (!(values.password == values.confirmPassword)) {
          errors.confirmPassword = "Confirm Password should be same as Password";
+         // errors.password = "Password cannot exceed more than 10 characters";
 
       }
       return errors;
    };
+
+   // const validate = (values) => {
+   //    const errors = {};
+   //    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+   //    if (!values.email) {
+   //       errors.email = "Email is required!";
+   //    } else if (!regex.test(values.email)) {
+   //       errors.email = "This is not a valid email format!";
+   //    }
+   //    if (!values.password) {
+   //       errors.password = "Password is required";
+   //    } else if (values.password.length < 4) {
+   //       errors.password = "Password must be more than 4 characters";
+   //    } else if (values.password.length > 10) {
+   //       errors.password = "Password cannot exceed more than 10 characters";
+   //    }
+   //    if (!values.confirmPassword) {
+   //       errors.confirmPassword = "Confirm Password is required";
+   //    } else if (values.confirmPassword.length < 4) {
+   //       errors.confirmPassword = "Confirm Password must be more than 4 characters";
+   //    } else if (values.confirmPassword.length > 10) {
+   //       errors.confirmPassword = "Confirm Password cannot exceed more than 10 characters";
+   //    } else if (values.password != values.confirmPassword) {
+   //       errors.confirmPassword = "Confirm Password should be same as Password";
+
+   //    }
+   //    return errors;
+   // };
 
    const [eyeon, eyeoff] = useState("password")
 
@@ -199,9 +233,9 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
                               </div>
                            </form>
                            <p className="text-center mb-0" onClick={() => Navigate("/studentlogin")}>Already ! Have an Account  <a data-toggle="tab" href="#">Login</a></p>
-                           <div class="course-btn mt-4 text-center" onClick={() => Navigate("/createcourse")}>
+                           {/* <div class="course-btn mt-4 text-center" onClick={() => Navigate("/createcourse")}>
                               <a href="#" class="btn btn-default btn-rd" title="Create Courses On Your Own">Create Courses</a>
-                           </div>
+                           </div> */}
                         </div>
                      </div>
                   </div>

@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './Slices';
+import ScrollToTop from './views/scrolltotop';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore({reducer:rootReducer},
@@ -18,6 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
         <BrowserRouter >
+        <ScrollToTop />
     <App />
     </BrowserRouter>
     </Provider>

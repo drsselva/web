@@ -10,7 +10,9 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { IoIosHome, IoMdListBox } from "react-icons/io";
+import { IoIosHome, IoMdListBox, } from "react-icons/io";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+
 import Collapse from '@mui/material/Collapse';
 
 
@@ -43,13 +45,13 @@ function Header2() {
          <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
          <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>
       </span>, path: "/home"
-   }, 
+   },
    { icon: <IoIosHome />, name: "Home", path: "/home" },
    { icon: <IoMdListBox />, name: "GRIT LaaS", path: "/gritlasshome" },
-   { icon: <IoMdListBox />, name: "GRIT Talents", path: "", web: "https://www.grittalents.com/" },
-   { icon: <IoIosHome />, name: "Others", sub: [{ icon: <IoMdListBox />, name: "IT Services", path: "/gritlasshome" }, { icon: <IoMdListBox />, name: "Sales", path: "/gritlasshome" }] },
+   // { icon: <IoMdListBox />, name: "GRIT Talents", path: "", web: "https://www.grittalents.com/" },
+   { icon: <IoIosHome />, name: "Others", sub: [{ icon: <MdKeyboardArrowDown />, name: "IT Services", path: "/gritlasshome" }, { icon: <IoMdListBox />, name: "Sales", path: "/gritlasshome" }] },
    { icon: <IoMdListBox />, name: "Contact Us", path: "/contactus" },
-   { icon: <IoMdListBox />, name: "CSR", path: "", web: "https://www.gritfoundation.in/" },
+   // { icon: <IoMdListBox />, name: "CSR", path: "", web: "https://www.gritfoundation.in/" },
 
       //    <ListItemButton onClick={handleClick}>
       //    <ListItemIcon>
@@ -68,25 +70,32 @@ function Header2() {
 
    const list = (anchor) => (
 
-      <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }} role="presentation"
+      <Box sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }} role="presentation"
          onKeyDown={() => toggleDrawer(anchor, false)}  >
+         {/* <List onClick={() => Navigate("/home")}> */}
 
+         {/* </List> */}
+         <ListItemButton onClick={() => Navigate("/home")}>
+            <ListItemIcon>
+               <img src={logoicon} alt="logo" title="" width="24" height="24" />
+            </ListItemIcon>
+            <ListItemText primary={<h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>} />
+         </ListItemButton>
          {DrawerMap.map((obj, index) => 'sub' in obj ? (
-            <List  >
-
+            <List>
                <ListItemButton onClick={handleClick}>
-                  <ListItemIcon>
+                  {/* <ListItemIcon>
                      {obj.icon}
-                  </ListItemIcon>
+                  </ListItemIcon> */}
                   <ListItemText primary={obj.name} />
-                  {open ? <IoIosHome /> : <IoIosHome />}
+                  {open ? <MdKeyboardArrowUp /> : <MdKeyboardArrowDown />}
                </ListItemButton>
                <Collapse in={open} timeout="auto" unmountOnExit>
                   <List component="div" disablePadding>
                      {obj.sub.map((subObj) => <ListItemButton sx={{ pl: 4 }} onClick={() => Navigate(subObj.path)}>
-                        <ListItemIcon>
+                        {/* <ListItemIcon>
                            {subObj.icon}
-                        </ListItemIcon>
+                        </ListItemIcon> */}
                         <ListItemText primary={subObj.name} />
                      </ListItemButton>)}
                   </List>
@@ -94,20 +103,20 @@ function Header2() {
 
             </List>
          ) : (
-            <List onClick={() =>obj.path? Navigate(obj.path):window.location.assign(obj.web)} >
+            <List onClick={() => obj.path ? Navigate(obj.path) : window.location.assign(obj.web)} >
 
                <ListItem key={obj.name} disablePadding>
                   <ListItemButton>
-                     <ListItemIcon>
+                     {/* <ListItemIcon>
                         {obj.icon}
-                     </ListItemIcon>
+                     </ListItemIcon> */}
                      <ListItemText primary={obj.name} />
                   </ListItemButton>
                </ListItem>
 
             </List>
          )
-         
+
          )}
       </Box>
 
@@ -123,7 +132,7 @@ function Header2() {
             <nav id="navbar" className="navbar">
                <ul>
                   <li><a class="btn-menu two-type" onClick={() => { Navigate("/gritlasshome") }}>GRIT Studies<span class="hover-txt">GRIT LaaS</span></a></li>
-                  <li><a href="https://www.grittalents.com/">GRIT Talents</a></li>
+                  {/* <li><a href="https://www.grittalents.com/">GRIT Talents</a></li> */}
                   <li class="dropdown"><a href="#"><span>Others</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                      <ul>
                         <li class="dropdown"><a href="#"><span>IT Services</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -141,7 +150,7 @@ function Header2() {
                      </ul>
                   </li>
                   <li><a href="#" onClick={() => Navigate("/contactus")}>Contact Us</a></li>
-                  <li><a href="https://www.gritfoundation.in/" class="btn-menu">CSR</a></li>
+                  {/* <li><a href="https://www.gritfoundation.in/" class="btn-menu">CSR</a></li> */}
 
                </ul>
             </nav>

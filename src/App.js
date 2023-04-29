@@ -31,6 +31,7 @@ import 'aos/dist/aos.css';
 import './App.css';
 // import "../../css/aos.css"
 import "./css/main.css"
+import ScrollToTop from './views/scrolltotop';
 
 
 function App() {
@@ -91,7 +92,7 @@ function App() {
 
 
 
-
+       
 
       </Routes>
     </React.Fragment>

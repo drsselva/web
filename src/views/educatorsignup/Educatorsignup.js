@@ -57,10 +57,13 @@ function Educatorsignup() {
          console.log(formValues)
          axios.post("http://44.202.89.70:8989/api/createUser", data)
             .then((res) => {
-               console.log(res)
-               setFormValues(initialValues);
-               setFormErrors({})
-               toast.success(res.data)
+               console.log(res.data)
+               toast.success(res.data.message)
+               if (res.data.message == "User registered successfully.") {
+                  setFormValues(initialValues);
+                  setFormErrors({})
+                  Navigate("/educatorlogin")
+               }
             })
             .catch((err) => {
                toast.error("Somethign went wrong")
@@ -79,23 +82,36 @@ function Educatorsignup() {
       const errors = {};
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-      if (!values.email) {
+      if (values.email == "") {
          errors.email = "Email is required!";
       } else if (!regex.test(values.email)) {
          errors.email = "This is not a valid email format!";
       }
-      if (!values.password) {
+      if (values.fullname == "") {
+         errors.fullname = "Name is required";
+      }
+      if (values.password == "") {
          errors.password = "Password is required";
-      } else if (values.password.length < 4) {
-         errors.password = "Password must be more than 4 characters";
-      } else if (values.password.length > 10) {
+      }
+      else if (values.password.length < 7) {
+         errors.password = "Password must be more than 7 characters";
+      }
+      else if (values.password.length > 10) {
          errors.password = "Password cannot exceed more than 10 characters";
+      }
+      if (!values.confirmpassword) {
+         errors.password = "Confirm Password is required";
+      }
+      if (!(values.password == values.confirmpassword)) {
+         errors.confirmpassword = "Confirm Password should be same as Password";
+         // errors.password = "Password cannot exceed more than 10 characters";
+
       }
       return errors;
    };
 
 
-   
+
    const [eyeon, eyeoff] = useState("password")
 
    const passwordshower = (value) => {
@@ -135,8 +151,8 @@ function Educatorsignup() {
                         <img src={educatorsemi} className="img-fluid" alt="" />
                      </div>
                      <div className="col-lg-6 ps-0 ps-lg-5 d-flex flex-column  relative  text-lg-start"
-                     data-aos="fade-down" data-aos-easing="ease-out-cubic"
-                     data-aos-duration="1000">
+                        data-aos="fade-down" data-aos-easing="ease-out-cubic"
+                        data-aos-duration="1000">
                         <div className="login-wrap p-4 p-md-5">
                            <div className="form-title">
                               <h3 className="mb-2 primary-color">Let's Create an Account!!</h3>
@@ -150,13 +166,13 @@ function Educatorsignup() {
                               </div>
 
                               <div className="form-group mt-3">
-                                 <input type="text" autoComplete className="form-control" onChange={handleChange} name="name" value={formValues.name} placeholder="Name" required />
-                                 <p className="text-danger">{formErrors.name}</p>
+                                 <input type="text" autoComplete className="form-control" onChange={handleChange} name="fullname" value={formValues.fullname} placeholder="Name" required />
+                                 <p className="text-danger">{formErrors.fullname}</p>
 
                               </div>
                               <div className="form-group mt-3">
-                                 <input type={eyeon} autoComplete className="form-control"  onChange={handleChange} name="password" value={formValues.password} 
-                                 placeholder="password" required  />
+                                 <input type={eyeon} autoComplete className="form-control" onChange={handleChange} name="password" value={formValues.password}
+                                    placeholder="password" required />
                                  <p className="text-danger">{formErrors.password}</p>
                                  <span toggle="#password-field" onClick={() => passwordshower()} className="bi bi-eye field-icon toggle-password" ></span>
 

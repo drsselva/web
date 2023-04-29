@@ -9032,7 +9032,11 @@ fieldset:disabled .btn {
 
 .text-center {
     text-align: center !important;
-    margin-top: 20px !important
+    margin-top: 15px !important
+}
+
+.uploadd-uploading-uploadingtext {
+    text-align: left !important;
 }
 
 .text-alignments {

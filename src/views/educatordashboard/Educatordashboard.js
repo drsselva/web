@@ -3,6 +3,7 @@ import axios from 'axios'
 import "../../css/aos.css"
 import "../../css/main.css"
 import Footer from '../../component/Footer/Footer'
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import Header from '../../component/Header/Header'
 import { useNavigate } from 'react-router-dom'
 import ellipse from "../../assets/img/student-db/ellipse.png"
@@ -17,12 +18,21 @@ import ReactStars from "react-rating-stars-component";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-function Educatordashboard() {
+function Educatordashboard({history}) {
   const Navigate = useNavigate()
+
+  // useEffect(() => {
+  //   const unlisten = history.listen(() => {
+  //     window.scrollTo(0, 0);
+  //   });
+  //   return () => {
+  //     unlisten();
+  //   }
+  // }, []);
 
 
   const field = {
-    type: "Tutor Dashboard",
+    type: "Educator Dashboard",
     content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
     route: [{ name: "Home", route: "/home" }, { name: "student dashboard", route: "/home" }]
   }
@@ -138,7 +148,7 @@ function Educatordashboard() {
               </div>
             </div>
 
-            <h2 class="fs-5 mb-3">C++ Beginner Course</h2>
+            {/* <h2 class="fs-5 mb-3">C++ Beginner Course</h2> */}
 
             <div class="row student-wrap px-4 position-relative">
 
@@ -147,12 +157,12 @@ function Educatordashboard() {
               <div class="col-md-4 cus-mx-mar d-flex align-items-center">
 
                 <div class="add-btn">
-                  <a href="#" class="course-link">
+                  <a href="/createcourse" class="course-link">
                     <i class="bi bi-plus-lg fs-4"></i>
                     <div class="add-txt">Add</div>
-       
                   </a>
                 </div>
+
                 <div class="popular-feature-db position-relative">
                   <a href="#" class="course-link">
                     <div class="popular-icon-db mb-0 d-flex align-items-center">
