@@ -18,7 +18,8 @@ import ReactStars from "react-rating-stars-component";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-function Educatordashboard({history}) {
+import './styles.css'
+function Educatordashboard({ history }) {
   const Navigate = useNavigate()
 
   // useEffect(() => {
@@ -49,6 +50,78 @@ function Educatordashboard({history}) {
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
+
+  const settings = {
+    dots: false,
+    arrows: true,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    
+
+    responsive: [
+      {
+        breakpoint: 996,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const DATA = [
+    {
+      title: 'TNPSC -( GROUP 2, 2A & 4)',
+    },
+
+    {
+      title: 'Human Resource Management',
+    },
+    {
+      title: 'JEE Main & Advance ',
+    },
+    {
+      title: 'Computer Management Course ',
+    },
+
+    {
+      title: 'Front End Development Course',
+    },
+    {
+      title: 'Backend Development Course',
+    },
+    {
+      title: 'NEET (Undergraduate)',
+    },
+    {
+      title: 'Mobile Apps React Native (Android & iOS)',
+    },
+    {
+      title: 'Corporate English Communication',
+    },
+    {
+      title: 'Python Course',
+    },
+  ]
+
   return (
     <>
       <Header />
@@ -140,117 +213,67 @@ function Educatordashboard({history}) {
           </div>
         </section>
 
-        <section id="upload-db" class="upload-db pt-0">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
+       
+        <Container  className='conatinerstyle'>
+        <div class="col-md-12">
                 <h2 class="fs-4 mb-4">Upload Content</h2>
               </div>
-            </div>
-
-            {/* <h2 class="fs-5 mb-3">C++ Beginner Course</h2> */}
-
-            <div class="row student-wrap px-4 position-relative">
-
-
-
-              <div class="col-md-4 cus-mx-mar d-flex align-items-center">
-
-                <div class="add-btn">
-                  <a href="/createcourse" class="course-link">
-                    <i class="bi bi-plus-lg fs-4"></i>
-                    <div class="add-txt">Add</div>
-                  </a>
-                </div>
-
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                    <div class="popular-icon-db mb-0 d-flex align-items-center">
-                      <img src={recatange858} alt="student" class="img-fluid me-3" />
-                      <div class="popular-content">
-                        <h5 class="mb-1">C++ Course Part - 1</h5>
-                        <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                      </div>
-                    </div></a>
-                </div>
-              </div>
-
-              <div class="col-md-4 cus-mx-mar">
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                    <div class="popular-icon-db mb-0 d-flex align-items-center">
-                      <img src={recatange858} alt="student" class="img-fluid me-3" />
-                      <div class="popular-content">
-                        <h5 class="mb-1">C++ Course Part - 1</h5>
-                        <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                      </div>
-                    </div></a>
-                </div>
-              </div>
-
-              <div class="col-md-4 cus-mx-mar">
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                    <div class="popular-icon-db mb-0 d-flex align-items-center">
-                      <img src={recatange858} alt="student" class="img-fluid me-3" />
-                      <div class="popular-content">
-                        <h5 class="mb-1">C++ Course Part - 1</h5>
-                        <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                      </div>
-                    </div></a>
-                </div>
-              </div>
-
-            </div>
-            {/* <div class="row student-wrap px-4 position-relative">
-          
-          <h2 class="fs-5 mb-3">C++ Beginner Course</h2>
-          <div class="col-md-4 cus-mx-mar d-flex align-items-center">
-                  <div class="add-btn position-relative">
-                    <a href="#" class="course-link">
-                      <i class="bi bi-plus-lg fs-4"></i>
+          <div class="row student-wrap px-4 position-relative">
+            <Row>
+              <Col className='col' md={1}>
+                <div className='plsudiv1' >
+                  <div onClick={() => Navigate("/createcourse")} className='plsudivover'>
+                    <a class="course-link">
+                      <i className="bi bi-plus-lg fs-4" style={{ textAlign: "center" }}></i>
                       <div class="add-txt">Add</div>
                     </a>
                   </div>
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                  <div class="popular-icon-db mb-0 d-flex align-items-center">
-                  <img src={recatange858} alt="student" class="img-fluid me-3"/>
-                  <div class="popular-content">
-                    <h5 class="mb-1">C++ Course Part - 2</h5>
-                    <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                  </div>
-                  </div></a>
                 </div>
-              </div>
-              <div class="col-md-4 cus-mx-mar">
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                  <div class="popular-icon-db mb-0 d-flex align-items-center">
-                  <img src={recatange858} alt="student" class="img-fluid me-3"/>
-                  <div class="popular-content">
-                    <h5 class="mb-1">C++ Course Part - 1</h5>
-                    <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                  </div>
-                  </div></a>
-                </div>
-              </div>
-              <div class="col-md-4 cus-mx-mar">
-                <div class="popular-feature-db position-relative">
-                  <a href="#" class="course-link">
-                  <div class="popular-icon-db mb-0 d-flex align-items-center">
-                  <img src={recatange858} alt="student" class="img-fluid me-3"/>
-                  <div class="popular-content">
-                    <h5 class="mb-1">React JS Development Part - 1</h5>
-                    <span class="google-txt">Google</span> <span class="min-txt"><span class="bi bi-clock me-2"></span>48 Min</span>
-                  </div>
-                  </div></a>
-                </div>
-              </div>
-            </div> */}
-          </div>
-        </section>
+              </Col>
 
+              <Col className='col1' md={11}>
+                <Slider {...settings}>
+
+                {DATA.map((e) => (
+                  <div className='plsudiv'>
+                    <a href="#" class="course-link">
+                      <div class="popular-icon-db mb-0 d-flex align-items-center">
+                        <img src={recatange858} alt="student" class="img-fluid me-3" />
+                        <div class="popular-content">
+                          <h5 className='titlecolor'>{e.title}</h5>
+                          <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span>
+                        </div>
+                      </div></a>
+                  </div>
+))}
+
+            
+                </Slider>
+              </Col>
+
+              {/* <Col className='col1' md={3}>
+               
+             
+             </Col>
+
+             <Col className='col1' md={3}>
+               
+               <div className='plsudiv'>
+                 
+                 <a href="#" class="course-link">
+                   <div class="popular-icon-db mb-0 d-flex align-items-center">
+                     <img src={recatange858} alt="student" class="img-fluid me-3" />
+                     <div class="popular-content">
+                       <h5 className='titlecolor'>C++ Course Part - 1</h5>
+                       <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span>
+                     </div>
+                   </div></a>
+               </div>
+             </Col> */}
+            </Row>
+
+          </div>
+        </Container>
         {/* 
     <section id="upload-db" class="upload-db pt-0">
       <div class="container">
