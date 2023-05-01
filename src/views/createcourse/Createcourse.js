@@ -55,8 +55,8 @@ function Createcourse() {
                <div class="container aos_init aos-animate" >
                   <div class="row gy-5 align-items-center create-course-banner-wrap" >
                      <div class="col-lg-6 d-flex flex-column res-mt justify-content-center relative text-center text-lg-start"
-                     data-aos="fade-up" data-aos-easing="ease-out-cubic"
-                     data-aos-duration="1000">
+                        data-aos="fade-up" data-aos-easing="ease-out-cubic"
+                        data-aos-duration="1000">
                         <div class="create-course-inner bg-white position-relative">
                            <form action="#" class="create-course-form">
                               {/* <div class="form-group">
@@ -99,6 +99,10 @@ function Createcourse() {
                                  <input type="file" onChange={(e) => setUploadData(e.target.files[0])} name="fileupload" id="fileupload" class="form-control mb-3" placeholder="Upload Your content" />
                               </div>
 
+                              <div class="form-group uploadd">
+                                 <label class="uploading uploadingtext">Feedback Form</label>
+                                 <input type="file" onChange={(e) => setUploadData(e.target.files[0])} name="fileupload" id="fileupload" class="form-control mb-3" placeholder="Upload Your content" />
+                              </div>
 
                               <div class="form-group mb-0">
                                  <button onClick={uploadFile} class="form-control btn btn-primary rounded submit px-3">Upload</button>

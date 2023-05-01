@@ -44,7 +44,7 @@ function Header() {
 
    const logoutt = ()=>{
       localStorage.removeItem('getprofiledata') 
-      Navigate("/home")
+      Navigate("/")
    }
 
    const DrawerMap = [{
@@ -53,7 +53,9 @@ function Header() {
          <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
          <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>
       </span>, path: "Home"
-   }, { icon: <IoIosHome />, name: "Home", path: "/home" }, { icon: <IoMdListBox />, name: "Marketplace", path: "/marketplace" }]
+   }, { icon: <IoIosHome />, name: "Home", path: "/home" }, 
+   // { icon: <IoMdListBox />, name: "Marketplace", path: "/marketplace" }
+]
 
 
 
@@ -89,9 +91,9 @@ function Header() {
             </span>
             <nav id="navbar" className="navbar">
                <ul>
-                  {!eduCheck ? <li onClick={() => Navigate("/educatorlogin")}><a href="#">Educator</a></li> : <li onClick={() => Navigate("/studentlogin")}><a href="#">Learner</a></li>}
+                  {/* {!eduCheck ? <li onClick={() => Navigate("/educatorlogin")}><a href="#">Educator</a></li> : <li onClick={() => Navigate("/studentlogin")}><a href="#">Learner</a></li>} */}
 
-                  <li onClick={() => Navigate("/marketplace")}><a href="#"> Marketplace</a></li>
+                  {/* <li onClick={() => Navigate("/marketplace")}><a href="#"> Marketplace</a></li> */}
                   {getprofiles ? <li onClick={() => logoutt()}><a href="#">Logout</a></li> :
                      null
                   }

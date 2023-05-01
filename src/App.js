@@ -45,7 +45,7 @@ function App() {
       <ToastContainer />
 
       <Routes >
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Gritlasshome />} />
 
         <Route exact path='/studentlogin' element={<Studentlogin />} />
 
@@ -69,7 +69,7 @@ function App() {
 
 
 
-        <Route exact path='/gritlasshome' element={<Gritlasshome />} />
+        {/* <Route exact path='/gritlasshome' element={<Gritlasshome />} /> */}
 
         <Route exact path='/gettingstart' element={<GettingStarted />} />
 

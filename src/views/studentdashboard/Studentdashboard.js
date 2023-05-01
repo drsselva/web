@@ -12,17 +12,29 @@ import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { logindetailSelector } from '../../Slices/login'
 import Aos from 'aos'
+import download from "../../assets/img/downloading.png"
+import upload from "../../assets/img/upload.png"
+import addimg from "../../assets/img/add.png"
+import Button from '@mui/material/Button';
+import materialsymbolsvideocamerafront from "../../assets/img/student-db/materialsymbolsvideocamerafront.svg"
+import { sessionDetails } from '../../constants/constants'
+import { useNavigate } from 'react-router-dom'
+import './styles.css'
+import reactangle1865 from "../../assets/img/student-db/rectangle1865.png"
+
 
 
 function Studentdashboard() {
+  const Navigate = useNavigate()
+
   const { logindetails } = useSelector(logindetailSelector)
-  console.log(logindetails,"logindetailslogindetails")
+  console.log(logindetails, "logindetailslogindetails")
   const [uploadData, setUploadData] = useState()
 
   const field = {
-    type: "Student Dashboard",
+    type: "Learner Dashboard",
     content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
-    route: [{ name: "Home", route: "/home" }, { name: "Lass", route: "/home" }, { name: "Learner", route: "/home" }]
+    route: [{ name: "Home", route: "/studentdashboard" }, { name: "Logout", route: "/" }]
   }
 
   const [getprofiles, setgetprofiles] = useState('')
@@ -50,6 +62,41 @@ function Studentdashboard() {
         console.log(err)
       })
   }
+
+  const DATA = [
+    {
+      title: 'TNPSC -( GROUP 2, 2A & 4)',
+    },
+
+    {
+      title: 'Human Resource Management',
+    },
+    {
+      title: 'JEE Main & Advance ',
+    },
+    {
+      title: 'Computer Management Course ',
+    },
+
+    {
+      title: 'Front End Development Course',
+    },
+    {
+      title: 'Backend Development Course',
+    },
+    {
+      title: 'NEET (Undergraduate)',
+    },
+    {
+      title: 'Mobile Apps React Native (Android & iOS)',
+    },
+    {
+      title: 'Corporate English Communication',
+    },
+    // {
+    //   title: 'Python Course',
+    // },
+  ]
   return (
     <>
       <Header />
@@ -125,12 +172,53 @@ function Studentdashboard() {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Sessions</h2>
+                <h2 className="fs-4 mb-4">Active Sessions</h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
 
-              <Sessions />
+              <>
+                {sessionDetails && sessionDetails.map((data) => {
+                  return (
+                    <div key={data.hoster} className="col-md-4">
+
+                      {/* <div className="row student-wrap px-5"> */}
+
+                      <div className="feature-db position-relative">
+                        <div className="feature-icon-db">
+                          <img src={data.domainBackground} alt="student" className="img-fluid" />
+                          <div className="overlay-content">
+                            <h5 className="titlecourse">Mobile Apps React Native (Android & iOS)</h5>
+                            <p>by {data.hoster}</p>
+                          </div>
+                        </div>
+                        <div className="session-time d-flex align-items-center justify-content-between">
+                          <span className="className-time">{data.timing}</span>
+                          <a href="#" className="btn btn-default st-btn rounded justify-content-end" onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                        </div>
+                        <div className="session-time d-flex align-items-center justify-content-between">
+                          <Button className='buttonsdownload'
+                          // onClick={() => Navigate("/createcourse")}
+                          >
+                            <img src={upload} alt="Student Join" className="addimg" />
+                            Upload
+
+                          </Button>
+                          <Button className='buttonsdownload'
+                            onClick={() => {
+                              // alert('clicked');
+                            }}
+                          >
+                            <img src={download} alt="Student Join" className="addimg" />
+                            Download
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+
+                  )
+                })}
+              </>
             </div>
 
           </div>
@@ -141,11 +229,32 @@ function Studentdashboard() {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Popular Courses</h2>
+                <h2 className="fs-4 mb-4">Upcoming Sessions</h2>
               </div>
             </div>
             <div className="row student-wrap px-4">
-              <Popularcourses />
+              {/* <Popularcourses /> */}
+              {DATA && DATA.map((data) => {
+                return (
+
+                  <div key={data.course} className="col-md-4 mb-4">
+
+                    <div className="popular-feature-db position-relative">
+                      <div className="popular-icon-db d-flex align-items-center">
+                        <img src={reactangle1865} alt="student" className="img-fluid me-3" />
+                        <div className="popular-content">
+                          <h5 className="mb-0">{data.title}</h5>
+                        </div>
+                      </div>
+                      <div className="popular-time d-flex align-items-center justify-content-between">
+                        <div className="star-rating"><span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="rating-count ms-1">5.0</span></div>
+                        <div className="view-btn"><a href="#" className="btn btn-default st-btn rounded justify-content-end">View</a> </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+
             </div>
           </div>
         </section>

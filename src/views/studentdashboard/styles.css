@@ -1,0 +1,19 @@
+.titlecourse{
+    margin-right: 10px!important;
+    color:white
+}
+.buttonsdownload{
+    background-color: #e6a31c;
+    color: white;
+    height: 30px;
+    margin-top: -12px;
+}
+.buttonsdownload:hover {
+    background: rgb(48 151 0 / 96%);
+    color:black
+}
+.addimg{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

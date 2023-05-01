@@ -35,7 +35,8 @@ function Educatordashboard({ history }) {
   const field = {
     type: "Educator Dashboard",
     content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
-    route: [{ name: "Home", route: "/home" }, { name: "student dashboard", route: "/home" }]
+    route: [{ name: "Home", route: "/educatordashboard" },
+     { name: "Logout", route: "/" }]
   }
 
   const [getprofiles, setgetprofiles] = useState('')
@@ -59,6 +60,7 @@ function Educatordashboard({ history }) {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
+    
     
 
     responsive: [
@@ -117,9 +119,9 @@ function Educatordashboard({ history }) {
     {
       title: 'Corporate English Communication',
     },
-    {
-      title: 'Python Course',
-    },
+    // {
+    //   title: 'Python Course',
+    // },
   ]
 
   return (
@@ -189,7 +191,7 @@ function Educatordashboard({ history }) {
             </div> */}
                 <div class="mt-4 tutor-btn text-right">
                   <a href="#" class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
-                  <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a>
+                  {/* <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a> */}
                 </div>
               </div>
 
@@ -202,7 +204,7 @@ function Educatordashboard({ history }) {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Sessions</h2>
+                <h2 className="fs-4 mb-4"> Upload Content  </h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
@@ -216,11 +218,11 @@ function Educatordashboard({ history }) {
        
         <Container  className='conatinerstyle'>
         <div class="col-md-12">
-                <h2 class="fs-4 mb-4">Upload Content</h2>
+                <h2 class="fs-4 mb-4">Uploaded Content</h2>
               </div>
           <div class="row student-wrap px-4 position-relative">
             <Row>
-              <Col className='col' md={1}>
+              {/* <Col className='col' md={1}>
                 <div className='plsudiv1' >
                   <div onClick={() => Navigate("/createcourse")} className='plsudivover'>
                     <a class="course-link">
@@ -229,9 +231,9 @@ function Educatordashboard({ history }) {
                     </a>
                   </div>
                 </div>
-              </Col>
+              </Col> */}
 
-              <Col className='col1' md={11}>
+              <Col className='col1' md={12}>
                 <Slider {...settings}>
 
                 {DATA.map((e) => (
