@@ -19,7 +19,7 @@ function Educatorlogin() {
 
    const field = {
       type: "Educator Login",
-      content: "Socially Purpose Driven Business Providing A Next Generation Learning as a Service Platform (GRIT LaaS)",
+      content: "GIVE what the best Education has to offer",
       route: [{ name: "Home", route: "/" }]
    }
 

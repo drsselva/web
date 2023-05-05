@@ -18,8 +18,9 @@ export const siteURL = {
 export const siteDetails = {
     
     //ddress : "59, VOC Street, Sivaganga - 630 561, Tamilnadu, India. ",
-    //phone : "+8610342869",
-    email : " admin@gritdigitech.com"
+   // phone : "+8610342869",
+    Mail : " admin@gritdigitech.com",
+    Mobile: "+91-8610342869"
 }
 
 

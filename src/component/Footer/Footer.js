@@ -14,12 +14,13 @@ function Footer() {
             <div className="row gy-4">
                <div className="col-lg-4 col-md-12 footer-info">
                   <a href="" className="logo d-flex align-items-center"/>			
-                 		  <h4>GRITDIGITECH PRIVATE LIMITED</h4>
-                     
+                 		  
+                       
                   <p>                                 
                                          
-                     <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.email}</a>
-                  </p>
+                     <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.Mail}</a> <br></br>
+                     <strong>Mobile:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.Mobile}</a></p>
+                  
                </div>
                {/*<div className="col-lg-2 col-md-12 footer-links">
                   <h4>Useful Links</h4>

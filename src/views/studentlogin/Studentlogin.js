@@ -28,7 +28,7 @@ function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
 
    const field = {
       type: "Learner  Login",
-      content: "Socially Purpose Driven Business Providing A Next Generation Learning as a Service Platform (GRIT LaaS)",
+      content: "Your journey to SUCCESS starts with GRIT Studies",
       route: [{ name: "Home", route: "/" }]
    }
    // console.log(loginUsers, logUsers, logUsersResponse, loading)
