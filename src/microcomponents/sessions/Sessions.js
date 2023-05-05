@@ -24,7 +24,7 @@ function Sessions() {
               <div className="feature-icon-db">
                 <img src={data.domainBackground} alt="student" className="img-fluid" />
                 <div className="overlay-content">
-                  <h5 className="fs-5 mb-0">create your course</h5>
+                  <h5 className="fs-5 mb-0"></h5>
                   {/* <p>by {data.hoster}</p> */}
                 </div>
               </div>

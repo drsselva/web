@@ -85,7 +85,7 @@ function Header() {
       <header id="header" className="header d-flex align-items-center sticked">
          <div className="container container-xl d-flex align-items-center justify-content-between">
             <span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
-               onClick={() => Navigate("/home")}>
+               onClick={() => Navigate("/")}>
                <img src={logoicon} className="me-2" alt="logo" title="" width="64" height="64" />
                <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h1>
             </span>

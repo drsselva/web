@@ -20,7 +20,7 @@ function Educatorlogin() {
    const field = {
       type: "Educator Login",
       content: "Socially Purpose Driven Business Providing A Next Generation Learning as a Service Platform (GRIT LaaS)",
-      route: [{ name: "Home", route: "/home" }, { name: "Lass", route: "/home" }, { name: "Login", route: "/home" }]
+      route: [{ name: "Home", route: "/" }]
    }
 
    const Navigate = useNavigate()

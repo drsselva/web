@@ -14,16 +14,14 @@ function Footer() {
             <div className="row gy-4">
                <div className="col-lg-4 col-md-12 footer-info">
                   <a href="" className="logo d-flex align-items-center"/>			
-                  <img src={gritlogo} alt="logo" title="" width="349" height="64"/>		  
-                  <p>
-                     <strong>Address:</strong><br></br>
-                     {siteDetails.address}
-                     <strong>Need Help?</strong><br></br>
-                     <strong>Phone:</strong> <a href="tel:+8610342869">{siteDetails.phone}</a><br></br>
+                 		  <h4>GRITDIGITECH PRIVATE LIMITED</h4>
+                     
+                  <p>                                 
+                                         
                      <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.email}</a>
                   </p>
                </div>
-               <div className="col-lg-2 col-md-12 footer-links">
+               {/*<div className="col-lg-2 col-md-12 footer-links">
                   <h4>Useful Links</h4>
                   <ul>
                      <li><a href="#">Home</a></li>
@@ -32,9 +30,9 @@ function Footer() {
                      <li><a href="#">Terms of service</a></li>
                      <li><a href="#">Privacy policy</a></li>
                   </ul>
-               </div>
+               </div>*/}
                <div className="col-lg-3 col-md-12 footer-links">
-               <Timeline
+               {/*<Timeline
   dataSource={{
     sourceType: 'profile',
     screenName: 'GritCareer'
