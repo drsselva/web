@@ -51,29 +51,15 @@ function Educatorlogin() {
       axios.post(`${BASE_URL1}` + "user/login", data)
          .then((res) => {
             console.log(res.data)
-            if (res.data.message == "User logged in successfully." && res.data.data.userRole == "Educator") {
+            if (res.data.message == "User logged in successfully.") {
                toast.success(res.data.message)
-               localStorage.removeItem('getprofiledata')
-               localStorage.setItem("useriddd", res.data.data.id)
-               dispatch(getcourselistEducatorApi(res.data.data.id))
-               localStorage.setItem("emailIddd", res.data.data.emailId)
-               localStorage.setItem("profileImg", res.data.data.profileImg)
-               localStorage.setItem("firstnameee", res.data.data.firstName)
-               setFormValues(initialValues);
-               setFormErrors({})
                Navigate("/Educatordashboard")
                var initialValues = { email: "", password: "" };
                setFormValues(initialValues)
             }
          })
          .catch((err) => {
-            if (err.response.data.error.reason) {
-               toast.error(err.response.data.error.reason)
-            }
-            else {
-               toast.error("Somethign went wrong")
-            }
-            console.log(err.response.data.error.reason)
+         
          })
 
       //  if(Object.keys(error).length === 0){
@@ -119,11 +105,6 @@ function Educatorlogin() {
       // dispatch(getprofile(googleData.profileObj))
       // Navigate("/studentdashboard")
       var data = JSON.stringify(googleData.profileObj)
-      localStorage.setItem("getprofiledata", data)
-      localStorage.removeItem('useriddd')
-      localStorage.removeItem('emailIddd')
-      localStorage.removeItem('profileImg')
-      localStorage.removeItem('firstnameee')
       Navigate("/educatordashboard")
       // const reqData = {
       //    email: googleData.profileObj.email,
@@ -131,15 +112,9 @@ function Educatorlogin() {
       // }
    };
 
-   const initClient = async () => {
-      gapi.client.init({
-         clientId: "256200674836-mpsru41t08o89e3ra7sof08s38qf8e5s.apps.googleusercontent.com",
-         scope: ''
-      });
-      await loadGapiInsideDOM()
-   };
 
-   const clientidd = "256200674836-mpsru41t08o89e3ra7sof08s38qf8e5s.apps.googleusercontent.com"
+
+   const clientidd = "256200674836-mpsru41t08o89e3ra7s55of08s38qf8e5s.apps.googleusercontent.com"
 
    const [eyeon, eyeoff] = useState("password")
 

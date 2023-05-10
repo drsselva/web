@@ -70,38 +70,17 @@ function Createcourse() {
    // console.log(changeddate, "datw")
 
    const submit = () => {
-      if(title == ""){
-         toast.error("Please Enter the title")
-      }
-      else if(contentImage == ""){
-         toast.error("Please Select the Content Image")
-      }
-      else if(datetime == ""){
-         toast.error("Please Select the Scheduled Date and Time")
-      }
-      else if(Description == ""){
-         toast.error("Please Enter The Description")
-      }
-      else if(Content == ""){
-         toast.error("Please Select the Content")
-      }
-      else if(Feedbackform == ""){
-         toast.error("Please Select the Feedbackform")
-      }
-      else{
+     
 
 
       var changeddate = moment(datetime).format("YYYY-MM-DD HH:mm:ss");
       // console.log(changeddate,"datw")
       let formData = new FormData();
+      var data ={
+
+      }
       // formData.append("file", uploadData)
-      formData.append("imageB64", contentImage)
-      formData.append("videoFile", Content)
-      formData.append("pdfFile", Feedbackform)
-      formData.append("title", title)
-      formData.append("scheduledTime", changeddate)
-      formData.append("description", Description)
-      formData.append("educatorId", EducatorId)
+     
 
       axios.post("http://44.202.89.70:8989/course/session/create", formData)
          .then((res) => {
@@ -112,7 +91,7 @@ function Createcourse() {
             console.log(err, "ssssssssssss")
          })
 
-      }
+      
    };
    // const submit = async () => {
    //    // if(title == ""){
