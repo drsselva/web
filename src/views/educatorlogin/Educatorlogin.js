@@ -10,8 +10,12 @@ import { gapi, loadGapiInsideDOM } from 'gapi-script';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Toast, { toast } from 'react-toastify'
+import { BASE_URL1 } from '../constant'
+import { useDispatch } from 'react-redux'
+import { getcourselistEducatorApi } from '../../Slices/getallcoursesedu'
 
 function Educatorlogin() {
+   const dispatch = useDispatch();
 
    const initialValues = { email: "", password: "" };
    const [formValues, setFormValues] = useState(initialValues);
@@ -39,12 +43,22 @@ function Educatorlogin() {
 
       let error = validate(formValues)
 
+      var data = {
+         "emailId": formValues.email,
+         "password": formValues.password
+      }
 
-      axios.get("http://44.202.89.70:8989/api/loginUser/" + formValues.email + "/" + formValues.password)
+      axios.post(`${BASE_URL1}` + "user/login", data)
          .then((res) => {
-            console.log(res.data, "sssssssssssssss")
-            toast.success(res.data.message)
-            if (res.data.statusCode == '200') {
+            console.log(res.data)
+            if (res.data.message == "User logged in successfully." && res.data.data.userRole == "Educator") {
+               toast.success(res.data.message)
+               localStorage.removeItem('getprofiledata')
+               localStorage.setItem("useriddd", res.data.data.id)
+               dispatch(getcourselistEducatorApi(res.data.data.id))
+               localStorage.setItem("emailIddd", res.data.data.emailId)
+               localStorage.setItem("profileImg", res.data.data.profileImg)
+               localStorage.setItem("firstnameee", res.data.data.firstName)
                setFormValues(initialValues);
                setFormErrors({})
                Navigate("/Educatordashboard")
@@ -53,8 +67,13 @@ function Educatorlogin() {
             }
          })
          .catch((err) => {
-            toast.error("Somethign went wrong")
-            console.log(err)
+            if (err.response.data.error.reason) {
+               toast.error(err.response.data.error.reason)
+            }
+            else {
+               toast.error("Somethign went wrong")
+            }
+            console.log(err.response.data.error.reason)
          })
 
       //  if(Object.keys(error).length === 0){
@@ -101,12 +120,15 @@ function Educatorlogin() {
       // Navigate("/studentdashboard")
       var data = JSON.stringify(googleData.profileObj)
       localStorage.setItem("getprofiledata", data)
+      localStorage.removeItem('useriddd')
+      localStorage.removeItem('emailIddd')
+      localStorage.removeItem('profileImg')
+      localStorage.removeItem('firstnameee')
       Navigate("/educatordashboard")
       // const reqData = {
       //    email: googleData.profileObj.email,
       //    password: googleData.profileObj.name,
       // }
-
    };
 
    const initClient = async () => {

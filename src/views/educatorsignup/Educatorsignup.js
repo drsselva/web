@@ -46,28 +46,38 @@ function Educatorsignup() {
          var data = {
             // "userId": "",
             "firstName": formValues.name,
-            // "lastName": "Roy",
-            "email": formValues.email,
+            "lastName": "",
+            "emailId": formValues.email,
             // "phone": "9884033102",
             // "age": "38",
             // "educationType": "BE",
             "password": formValues.password,
-            "role": "Educator"
+            "userRole": "Educator"
          }
          console.log(formValues)
-         axios.post("http://44.202.89.70:8989/api/createUser", data)
+         axios.post("http://44.202.89.70:8989/api/user/create", data)
             .then((res) => {
-               console.log(res.data)
-               toast.success(res.data.message)
-               if (res.data.message == "User registered successfully.") {
+               console.log(res.data,"aasssssssssssssssss")
+               if (res.data.data == "User created successfully." && res.data.error == null) {
                   setFormValues(initialValues);
                   setFormErrors({})
+                  toast.success("User Registered successfully.")
                   Navigate("/educatorlogin")
+               }
+             
+               else{
+                  toast.success("Somethign went wrong")
                }
             })
             .catch((err) => {
-               toast.error("Somethign went wrong")
-               console.log(err)
+               if(err.response.data.error.reason == "Email Id already exists "){
+                  toast.error("Email Id already exists")
+               }
+               else{
+                  toast.error("Somethign went wrong")
+               }
+               console.log(err.response.data,"ssssss")
+
             })
       }
       else {

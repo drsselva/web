@@ -51,31 +51,40 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
             }
          };
          var data = {
+            // "userId": "",
             "firstName": formValues.name,
-            // "lastName": "Roy",
-            "email": formValues.email,
+            "lastName": "",
+            "emailId": formValues.email,
             // "phone": "9884033102",
             // "age": "38",
             // "educationType": "BE",
             "password": formValues.password,
-            "role": "Student"
+            "userRole": "Learner"
          }
          console.log(formValues)
-
-         axios.post("http://44.202.89.70:8989/api/createUser", data)
+         axios.post("http://44.202.89.70:8989/api/user/create", data)
             .then((res) => {
-               console.log(res)
-               toast.success(res.data.message)
-               if (res.data.message == "User registered successfully.") {
+               console.log(res.data, "aasssssssssssssssss")
+               if (res.data.data == "User created successfully." && res.data.error == null) {
+                toast.success("User Registered successfully.")
                   setFormValues(initialValues);
                   setFormErrors({})
-                  Navigate("/educatorlogin")
-               }
-            })
-            .catch((err) => {
-               toast.error("Somethign went wrong")
-               console.log(err)
-            })
+                  Navigate("/studentlogin")
+             }
+             else{
+                toast.success("Somethign went wrong")
+             }
+          })
+          .catch((err) => {
+             if(err.response.data.error.reason == "Email Id already exists "){
+                toast.error("Email Id already exists")
+             }
+             else{
+                toast.error("Somethign went wrong")
+             }
+             console.log(err.response.data,"ssssss")
+
+          })
 
 
 
@@ -186,8 +195,8 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
                         <img src={studentsign} className="img-fluid" alt="" />
                      </div>
                      <div className="col-lg-6 ps-0 ps-lg-5 d-flex flex-column  relative  text-lg-start"
-                     data-aos="fade-down" data-aos-easing="ease-out-cubic"
-                     data-aos-duration="1000">
+                        data-aos="fade-down" data-aos-easing="ease-out-cubic"
+                        data-aos-duration="1000">
                         <div className="login-wrap p-4 p-md-5">
                            <div className="form-title">
                               <h3 className="mb-2 primary-color">Let's Create an Account!!</h3>

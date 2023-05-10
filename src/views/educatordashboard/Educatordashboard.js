@@ -19,9 +19,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { educatorAllCourseSelector } from '../../Slices/getallcoursesedu'
+import { BASE_URLAPI } from '../constant'
 function Educatordashboard({ history }) {
+  // const { educatorAllCourse } = useSelector(educatorAllCourseSelector)
+  // console.log(educatorAllCourse, "educatorAllCourseeducatorAllCourse")
   const Navigate = useNavigate()
-
   // useEffect(() => {
   //   const unlisten = history.listen(() => {
   //     window.scrollTo(0, 0);
@@ -36,17 +40,80 @@ function Educatordashboard({ history }) {
     type: "Educator Dashboard",
     content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
     route: [{ name: "Home", route: "/educatordashboard" },
-     { name: "Logout", route: "/" }]
+    { name: "Logout", route: "/" }]
   }
 
   const [getprofiles, setgetprofiles] = useState('')
+  const [getnames, setgetnames] = useState('')
+  const [getimage, setgetimage] = useState('')
+  const [emailid, setemailid] = useState('')
+  const [setidd, setsetid] = useState('')
+
   useEffect(() => {
     var data = localStorage.getItem("getprofiledata")
     console.log(data, "datadatadata")
     const getprofiledata = JSON.parse(data);
     setgetprofiles(getprofiledata)
+    var dataid = localStorage.getItem("useriddd")
+    setsetid(dataid)
+    getcourselistEducatorApi(dataid)
+    var dataemailid = localStorage.getItem("emailIddd")
+    setemailid(dataemailid)
+    var dataname = localStorage.getItem("firstnameee")
+    setgetnames(dataname)
+    var dataimage = localStorage.getItem("profileImg")
+    setgetimage(dataimage)
   }, [])
 
+
+const [courselist,setcourselist] = useState([])
+
+
+  const getcourselistEducatorApi = async (dataid) => {
+    // console.log(payload,"payloadpayload")
+    axios.get(`${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid)
+    .then((res) => {
+      console.log(res,"\"fetch course session list Successfully\"")
+      if (res.data.message == "\"fetch course session list Successfully\"") {
+        
+      }
+   })
+   .catch((err) => {
+    
+      console.log(err.response)
+   })
+    // axios({
+    //   method: "get",
+    //   url: `${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid,
+
+    // }).then(function (response) {
+    //   console.log(response, "response");
+    //   setcourselist(response.data.data)
+
+    // }
+
+    // )
+    //   .catch(function (error) {
+    //     console.log(error, "error");
+    //   });
+  }
+  // }
+
+  // try {
+
+  //   const response = await axios({
+  //     method: "get",
+  //     url: `${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid,
+  //   })
+  //   console.log(response.data, "getcourselistEducatorApi")
+  //   // dispatch(geteducatorAllCourse(response.data))
+  //   // dispatch(fetchcart(payload.token))
+  // }
+  // catch (err) {
+  //   // console.log("errorgetbanners", err.data)
+  // }
+
+  // }
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -60,8 +127,8 @@ function Educatordashboard({ history }) {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    
-    
+
+
 
     responsive: [
       {
@@ -124,6 +191,9 @@ function Educatordashboard({ history }) {
     // },
   ]
 
+  useEffect(() => {
+  }, [])
+
   return (
     <>
       <Header />
@@ -140,9 +210,9 @@ function Educatordashboard({ history }) {
               <div className="col-md-3 mt-0">
                 <div className="stu-feature-box">
                   <div className="student-img-wrap text-center">
-                    <img src={getprofiles ? getprofiles.imageUrl : ellipse}
-                      alt="student" className="img-fluid m-auto mb-4 w-50 rounded-circle" />
-                    <h5 className="mb-0 fs-5">{getprofiles ? getprofiles.name : "Name"}</h5>
+                    <img src={getimage ? getimage : getprofiles ? getprofiles.imageUrl : ellipse}
+                      alt="Educator" className="img-fluid m-auto mb-4 w-50 rounded-circle" />
+                    <h5 className="mb-0 fs-5">{getnames ? getnames : getprofiles ? getprofiles.name : "Name"}</h5>
                     {/* <div className="mb-0 fs-star">
                     <ReactStars
                       count={5}
@@ -160,7 +230,7 @@ function Educatordashboard({ history }) {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Course: </h5><span> Android Development Course, C++ Beginner Course</span>                    </div>
+                          <h5>Course: </h5><span> Android Development Course, C++ Beginner Course</span></div>
                       </div>
                     </div>
                   </li>
@@ -168,7 +238,7 @@ function Educatordashboard({ history }) {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{getprofiles ? getprofiles.email : "alex56@gmail.com"}</a>                  </div>
+                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a>                  </div>
                       </div>
                     </div>
                   </li>
@@ -215,11 +285,11 @@ function Educatordashboard({ history }) {
           </div>
         </section>
 
-       
-        <Container  className='conatinerstyle'>
-        <div class="col-md-12">
-                <h2 class="fs-4 mb-4">Uploaded Content</h2>
-              </div>
+
+        <Container className='conatinerstyle'>
+          <div class="col-md-12">
+            <h2 class="fs-4 mb-4">Uploaded Content</h2>
+          </div>
           <div class="row student-wrap px-4 position-relative">
             <Row>
               {/* <Col className='col' md={1}>
@@ -236,20 +306,20 @@ function Educatordashboard({ history }) {
               <Col className='col1' md={12}>
                 <Slider {...settings}>
 
-                {DATA.map((e) => (
-                  <div className='plsudiv'>
-                    <a href="#" class="course-link">
-                      <div class="popular-icon-db mb-0 d-flex align-items-center">
-                        <img src={recatange858} alt="student" class="img-fluid me-3" />
-                        <div class="popular-content">
-                          <h5 className='titlecolor'>{e.title}</h5>
-                          <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span>
-                        </div>
-                      </div></a>
-                  </div>
-))}
+                  {courselist.map((e) => (
+                    <div className='plsudiv'>
+                      <a href="#" class="course-link">
+                        <div class="popular-icon-db mb-0 d-flex align-items-center">
+                          <img src={recatange858} alt="student" class="img-fluid me-3" />
+                          <div class="popular-content">
+                            <h5 className='titlecolor'>{e.title}</h5>
+                            <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span>
+                          </div>
+                        </div></a>
+                    </div>
+                  ))}
 
-            
+
                 </Slider>
               </Col>
 

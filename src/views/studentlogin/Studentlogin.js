@@ -16,6 +16,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { getprofile, logindetailSelector } from '../../Slices/login'
 import Aos from 'aos'
+import { BASE_URL1 } from '../constant'
 
 function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
 
@@ -60,24 +61,34 @@ function Studentlogin({ loginUsers, logUsers, logUsersResponse, loading }) {
       if (Object.keys(error).length === 0) {
          console.log(formValues.email, formValues.password, "formValues.password")
          //   loginUsers(data)
-
-         axios.get("http://44.202.89.70:8989/api/loginUser/" + formValues.email + "/" + formValues.password)
+         var data = {
+            "emailId": formValues.email,
+            "password": formValues.password
+         }
+   
+         axios.post(`${BASE_URL1}` + "user/login",data)
             .then((res) => {
-               toast.success(res.data.message)
-               if (res.data.statusCode == '200') {
+               console.log(res.data, "sssssssssssssss")
+               if (res.data.message == "User logged in successfully.") {
+                  toast.success(res.data.message)
+                  localStorage.removeItem('getprofiledata')
+                  localStorage.setItem("useriddd", res.data.data.id)
+                  localStorage.setItem("emailIddd", res.data.data.emailId)
+                  localStorage.setItem("profileImg", res.data.data.profileImg)
+                  localStorage.setItem("firstnameee", res.data.data.firstName)
                   setFormValues(initialValues);
                   setFormErrors({})
                   Navigate("/studentdashboard")
                }
-               // console.log(res)
-               // setFormValues(initialValues);
-               // setFormErrors({})
-               // toast.success("Logged in successfully")
-               // Navigate("/studentdashboard")
             })
             .catch((err) => {
-               toast.error("Somethign went wrong")
-               console.log(err)
+               if(err.response.data.error.reason){
+                  toast.error(err.response.data.error.reason)
+               }
+               else{
+                  toast.error("Somethign went wrong")
+               }
+               console.log(err.response.data.error.reason)
             })
       }
       else {
