@@ -72,7 +72,7 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
                   Navigate("/studentlogin")
              }
              else{
-                toast.success("Somethign went wrong")
+                toast.success(" User Registered successfully.")
              }
           })
           .catch((err) => {
