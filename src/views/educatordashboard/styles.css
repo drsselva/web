@@ -5,8 +5,9 @@
     overflow: auto;
     padding: 18px;
     /* height: 80px; */
-    display: flex;
-    /* margin-left: 10px; */
+    /* display: flex; */
+    margin-right: 10px!important;
+    width: 300px;
 }
 .plsudiv1 {
     background-color: #252525;
@@ -27,6 +28,9 @@
 .titlecolor {
     color: white;
     font-size: 14px;
+}
+.col1{
+    display: flex;
 }
 
 .col1 .slick-prev:before {

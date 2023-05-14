@@ -14,16 +14,16 @@ function Footer() {
             <div className="row gy-4">
                <div className="col-lg-4 col-md-12 footer-info">
                   <a href="" className="logo d-flex align-items-center"/>			
-                  <img src={gritlogo} alt="logo" title="" width="349" height="64"/>		  
+                  {/* <img src={gritlogo} alt="logo" title="" width="349" height="64"/>		   */}
                   <p>
-                     <strong>Address:</strong><br></br>
+                     {/* <strong>Address:</strong><br></br>
                      {siteDetails.address}
-                     <strong>Need Help?</strong><br></br>
+                     <strong>Need Help?</strong><br></br> */}
                      <strong>Phone:</strong> <a href="tel:+8610342869">{siteDetails.phone}</a><br></br>
                      <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.email}</a>
                   </p>
                </div>
-               <div className="col-lg-2 col-md-12 footer-links">
+               {/* <div className="col-lg-2 col-md-12 footer-links">
                   <h4>Useful Links</h4>
                   <ul>
                      <li><a href="#">Home</a></li>
@@ -32,8 +32,8 @@ function Footer() {
                      <li><a href="#">Terms of service</a></li>
                      <li><a href="#">Privacy policy</a></li>
                   </ul>
-               </div>
-               <div className="col-lg-3 col-md-12 footer-links">
+               </div> */}
+               {/* <div className="col-lg-3 col-md-12 footer-links">
                <Timeline
   dataSource={{
     sourceType: 'profile',
@@ -44,8 +44,7 @@ function Footer() {
   }}
 />
             
-                  {/* <a className="twitter-timeline" data-width="680" data-height="290" data-dnt="true" data-theme="dark" href="https://twitter.com/GritCareer?ref_src=twsrc%5Etfw">Tweets by GritCareer</a> <script async src="../platform.twitter.com/widgets.js" charSet="utf-8"></script> */}
-               </div>
+               </div> */}
                <div className="col-lg-3 col-md-12 mb-4 mb-lg-0 footer-contact">
                   <h4>Contact Us</h4>
                   <div className="social-links d-flex">
@@ -59,9 +58,9 @@ function Footer() {
             </div>
          </div>
          <div className="container mt-4">
-            <div className="copyright">
+            {/* <div className="copyright">
                Copyright 2023 - All Right Reserved By GRIT Digitech - Pvt Ltd      
-            </div>
+            </div> */}
          </div>
       </footer>  )
 }

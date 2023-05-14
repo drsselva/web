@@ -29,11 +29,16 @@ function Header() {
    }, [])
 
    const [getprofiles, setgetprofiles] = useState('')
+   const [getuserid, setgetuserid] = useState('')
+
    useEffect(() => {
       var data = localStorage.getItem("getprofiledata")
-      console.log(data, "datadatadata")
+      var data1 = localStorage.getItem("useriddd")
+
+      console.log(data,data1, "datadatadata")
       const getprofiledata = JSON.parse(data);
       setgetprofiles(getprofiledata)
+      setgetuserid(data1)
    }, [])
    const [stateDrawer, setStateDrawer] = React.useState(false);
 
@@ -44,6 +49,7 @@ function Header() {
 
    const logoutt = ()=>{
       localStorage.removeItem('getprofiledata') 
+      localStorage.removeItem('useriddd') 
       Navigate("/")
    }
 
@@ -85,16 +91,17 @@ function Header() {
       <header id="header" className="header d-flex align-items-center sticked">
          <div className="container container-xl d-flex align-items-center justify-content-between">
             <span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
-               onClick={() => Navigate("/home")}>
+               // onClick={() => Navigate("/")}
+               >
                <img src={logoicon} className="me-2" alt="logo" title="" width="64" height="64" />
-               <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h1>
+               <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">STUDIES</span></h1>
             </span>
             <nav id="navbar" className="navbar">
                <ul>
                   {/* {!eduCheck ? <li onClick={() => Navigate("/educatorlogin")}><a href="#">Educator</a></li> : <li onClick={() => Navigate("/studentlogin")}><a href="#">Learner</a></li>} */}
 
                   {/* <li onClick={() => Navigate("/marketplace")}><a href="#"> Marketplace</a></li> */}
-                  {getprofiles ? <li onClick={() => logoutt()}><a href="#">Logout</a></li> :
+                  {getprofiles || getuserid ? <li onClick={() => logoutt()}><a href="#">Logout</a></li> :
                      null
                   }
 

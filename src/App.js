@@ -19,7 +19,6 @@ import Blockchain from './views/Blockchain/Blockchain';
 import Nft from './views/nft/Nft';
 import Contactus from './views/contactus/Contactus';
 import Getstarted from './views/getstarted/Getstarted';
-
 import { toast, ToastContainer } from "react-toastify";
 
 import Home from './views/home/Home';
@@ -32,6 +31,7 @@ import './App.css';
 // import "../../css/aos.css"
 import "./css/main.css"
 import ScrollToTop from './views/scrolltotop';
+import Editprofile from './views/editprofile/Editprofile';
 
 
 function App() {
@@ -51,6 +51,8 @@ function App() {
 
 
         <Route exact path='/studentdashboard' element={<Studentdashboard />} />
+        <Route exact path='/Editprofile' element={<Editprofile />} />
+
 
         <Route exact path='/educatorlogin' element={<Educatorlogin />} />
 

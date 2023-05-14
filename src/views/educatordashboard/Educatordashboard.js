@@ -23,8 +23,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { educatorAllCourseSelector } from '../../Slices/getallcoursesedu'
 import { BASE_URLAPI } from '../constant'
 function Educatordashboard({ history }) {
-  // const { educatorAllCourse } = useSelector(educatorAllCourseSelector)
-  // console.log(educatorAllCourse, "educatorAllCourseeducatorAllCourse")
+  const { educatorAllCourse } = useSelector(educatorAllCourseSelector)
+  console.log(educatorAllCourse, "educatorAllCourseeducatorAllCourse")
   const Navigate = useNavigate()
   // useEffect(() => {
   //   const unlisten = history.listen(() => {
@@ -75,28 +75,30 @@ const [courselist,setcourselist] = useState([])
     .then((res) => {
       console.log(res,"\"fetch course session list Successfully\"")
       if (res.data.message == "\"fetch course session list Successfully\"") {
-        
+        setcourselist(res.data.data)
       }
    })
    .catch((err) => {
     
       console.log(err.response)
    })
-    // axios({
-    //   method: "get",
-    //   url: `${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid,
-
-    // }).then(function (response) {
-    //   console.log(response, "response");
-    //   setcourselist(response.data.data)
-
-    // }
-
-    // )
-    //   .catch(function (error) {
-    //     console.log(error, "error");
-    //   });
   }
+
+  //   // axios({
+  //   //   method: "get",
+  //   //   url: `${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid,
+
+  //   // }).then(function (response) {
+  //   //   console.log(response, "response");
+  //   //   setcourselist(response.data.data)
+
+  //   // }
+
+  //   // )
+  //   //   .catch(function (error) {
+  //   //     console.log(error, "error");
+  //   //   });
+  // }
   // }
 
   // try {
@@ -113,7 +115,6 @@ const [courselist,setcourselist] = useState([])
   //   // console.log("errorgetbanners", err.data)
   // }
 
-  // }
 
   const ratingChanged = (newRating) => {
     console.log(newRating);
@@ -156,43 +157,6 @@ const [courselist,setcourselist] = useState([])
     ],
   };
 
-  const DATA = [
-    {
-      title: 'TNPSC -( GROUP 2, 2A & 4)',
-    },
-
-    {
-      title: 'Human Resource Management',
-    },
-    {
-      title: 'JEE Main & Advance ',
-    },
-    {
-      title: 'Computer Management Course ',
-    },
-
-    {
-      title: 'Front End Development Course',
-    },
-    {
-      title: 'Backend Development Course',
-    },
-    {
-      title: 'NEET (Undergraduate)',
-    },
-    {
-      title: 'Mobile Apps React Native (Android & iOS)',
-    },
-    {
-      title: 'Corporate English Communication',
-    },
-    // {
-    //   title: 'Python Course',
-    // },
-  ]
-
-  useEffect(() => {
-  }, [])
 
   return (
     <>
@@ -260,7 +224,7 @@ const [courselist,setcourselist] = useState([])
 
             </div> */}
                 <div class="mt-4 tutor-btn text-right">
-                  <a href="#" class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
+                  <a onClick={()=>Navigate("/editprofile")} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
                   {/* <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a> */}
                 </div>
               </div>
@@ -303,25 +267,29 @@ const [courselist,setcourselist] = useState([])
                 </div>
               </Col> */}
 
-              <Col className='col1' md={12}>
-                <Slider {...settings}>
+              {/* <Col className='col1' md={12}> */}
+                {/* <Slider {...settings}> */}
+                {courselist.map((e) => (
 
-                  {courselist.map((e) => (
-                    <div className='plsudiv'>
+                <Col className='col1' md={4}>
+                    <div className='plsudiv mt-3' >
                       <a href="#" class="course-link">
                         <div class="popular-icon-db mb-0 d-flex align-items-center">
-                          <img src={recatange858} alt="student" class="img-fluid me-3" />
+                          <img src={e.courseImageName} alt="student" class="img-fluid me-3" />
                           <div class="popular-content">
-                            <h5 className='titlecolor'>{e.title}</h5>
-                            <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span>
+                            <h5 className='titlecolor'>{e.courseTitle}</h5>
+                            {/* <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span> */}
                           </div>
                         </div></a>
+                        
                     </div>
-                  ))}
+
+                    
 
 
-                </Slider>
+                {/* </Slider> */}
               </Col>
+                  ))}
 
               {/* <Col className='col1' md={3}>
                

@@ -20,16 +20,28 @@ import materialsymbolsvideocamerafront from "../../assets/img/student-db/materia
 import { sessionDetails } from '../../constants/constants'
 import { useNavigate } from 'react-router-dom'
 import './styles.css'
-import reactangle1865 from "../../assets/img/student-db/rectangle1865.png"
-
-
+import reactangle1865 from "../../assets/img/student-db/pdf.png"
+import { BASE_URLAPI } from '../constant'
+import rectange1834 from "../../assets/img/student-db/rectangle1834.png"
+import { Container, Col, Row, } from 'react-bootstrap';
+import moment from 'moment'
+import { saveAs } from 'file-saver';
 
 function Studentdashboard() {
   const Navigate = useNavigate()
 
   const { logindetails } = useSelector(logindetailSelector)
-  console.log(logindetails, "logindetailslogindetails")
+  // console.log(logindetails, "logindetailslogindetails")
   const [uploadData, setUploadData] = useState()
+
+  const [getprofiles, setgetprofiles] = useState('')
+  const [getnames, setgetnames] = useState('')
+  const [getimage, setgetimage] = useState('')
+  const [emailid, setemailid] = useState('')
+  const [setidd, setsetid] = useState('')
+  const [courselist, setcourselist] = useState([])
+  const [InactiveResponse, setInactiveResponse] = useState([])
+
 
   const field = {
     type: "Learner Dashboard",
@@ -37,66 +49,84 @@ function Studentdashboard() {
     route: [{ name: "Home", route: "/studentdashboard" }, { name: "Logout", route: "/" }]
   }
 
-  const [getprofiles, setgetprofiles] = useState('')
+  // useEffect(() => {
+  //   var data = localStorage.getItem("getprofiledata")
+  //   const getprofiledata = JSON.parse(data);
+  //   setgetprofiles(getprofiledata)
+  //   console.log(getprofiles, "getprofilesgetprofiles")
+  // }, [])
+
+
   useEffect(() => {
+    getallCourseApilist()
+
     var data = localStorage.getItem("getprofiledata")
+    // console.log(data, "datadatadata")
     const getprofiledata = JSON.parse(data);
     setgetprofiles(getprofiledata)
-    console.log(getprofiles, "getprofilesgetprofiles")
+    var dataid = localStorage.getItem("useriddd")
+    setsetid(dataid)
+    // getcourselistEducatorApi(dataid)
+    var dataemailid = localStorage.getItem("emailIddd")
+    setemailid(dataemailid)
+    var dataname = localStorage.getItem("firstnameee")
+    setgetnames(dataname)
+    var dataimage = localStorage.getItem("profileImg")
+    setgetimage(dataimage)
   }, [])
 
-
-  const uploadFile = () => {
-    const headers = {
-      'content-type': 'multipart/form-ability',
-    }
-    console.log(uploadData)
-    let formData = new FormData();
-    formData.append("file", uploadData)
-
-    axios.post("http://44.202.89.70:8989/api/uploadFile", formData, { headers })
+  const getallCourseApilist = (dataid) => {
+    // console.log(payload,"payloadpayload")
+    axios.get(`${BASE_URLAPI}` + "course/session/getAllCourse")
       .then((res) => {
-        console.log(res)
+        console.log(res, "\"fetch course session list Successfully\"")
+        if (res.data.message == "\"fetch course session list Successfully\"") {
+          setcourselist(res.data.data.inActiveResponse)
+          setInactiveResponse(res.data.data.activeResponse)
+        }
       })
       .catch((err) => {
-        console.log(err)
+
+        console.log(err.response)
       })
   }
 
-  const DATA = [
-    {
-      title: 'TNPSC -( GROUP 2, 2A & 4)',
-    },
+  
 
-    {
-      title: 'Human Resource Management',
-    },
-    {
-      title: 'JEE Main & Advance ',
-    },
-    {
-      title: 'Computer Management Course ',
-    },
 
-    {
-      title: 'Front End Development Course',
-    },
-    {
-      title: 'Backend Development Course',
-    },
-    {
-      title: 'NEET (Undergraduate)',
-    },
-    {
-      title: 'Mobile Apps React Native (Android & iOS)',
-    },
-    {
-      title: 'Corporate English Communication',
-    },
-    // {
-    //   title: 'Python Course',
-    // },
-  ]
+  const fileDownload = (title) => {
+    // console.log(payload,"payloadpayload")
+    var data ={
+      filePath : "6819b68b-e06e-4500-abf0-210c55d7f37e/web/add.png"
+    }
+    axios.post(`${BASE_URLAPI}` + "course/session/download",data)
+      .then((res) => {
+        console.log(res.data, "\"fetch course session list Successfully\"")
+        saveAs(res.data, 'filename.ext');
+        // if (res.data.message == "\"fetch course session list Successfully\"") {
+        //   setcourselist(res.data.data.inActiveResponse)
+        //   setInactiveResponse(res.data.data.activeResponse)
+        // }
+      })
+      .catch((err) => {
+
+        console.log(err.response)
+      })
+  }
+
+  const hiddenFileInput = React.createRef();
+
+ const handleButtonClick = () => {
+    hiddenFileInput.current.click();
+  }
+
+ const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    // Do something with the selected file
+    console.log(file);
+  }
+
+
   return (
     <>
       <Header />
@@ -115,16 +145,13 @@ function Studentdashboard() {
                 <div className="stu-feature-box">
                   <div className="student-img-wrap text-center">
 
-                    {getprofiles ?
-                      <img src={getprofiles.imageUrl} />
-                      :
-                      <img src={ellipse} />
 
-                    }
+                    <img src={getimage ? getimage : getprofiles ? getprofiles.imageUrl : ellipse} />
+
                     {/* <video width="320" height="240" controls >
             <source src="http://44.202.89.70:8989/api/download028%20Passing%20Callback%20Functions%20Around.mp4" type="video/mp4"/>
             </video> */}
-                    <h5 className="mb-0 fs-5">{getprofiles ? getprofiles.name : "Name"}</h5>
+                    <h5 className="mb-0 fs-5">{getnames ? getnames : getprofiles ? getprofiles.name : "Name"}</h5>
                   </div>
                 </div>
               </div>
@@ -142,7 +169,7 @@ function Studentdashboard() {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{getprofiles ? getprofiles.email : "alex56@gmail.com"}</a></div>
+                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a></div>
                       </div>
                     </div>
                   </li>
@@ -178,42 +205,74 @@ function Studentdashboard() {
             <div className="row student-wrap px-5">
 
               <>
-                {sessionDetails && sessionDetails.map((data) => {
+                {InactiveResponse && InactiveResponse.map((data) => {
                   return (
-                    <div key={data.hoster} className="col-md-4">
+                    <div className="col-md-6">
+                      <div className='row mt-3' >
+                        <div className="col-md-8">
 
-                      {/* <div className="row student-wrap px-5"> */}
+                          <div className="feature-db position-relative">
+                            <div className='row '>
+                              <img src={data.courseImageName}
+                                alt="student" className="inactiveimage" />
+                              <div className="col">
+                                <h5 className="titlecourse">{data.courseTitle}</h5>
+                                {/* <p>by {data.hoster}</p> */}
+                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
 
-                      <div className="feature-db position-relative">
-                        <div className="feature-icon-db">
-                          <img src={data.domainBackground} alt="student" className="img-fluid" />
-                          <div className="overlay-content">
-                            <h5 className="titlecourse">Mobile Apps React Native (Android & iOS)</h5>
-                            <p>by {data.hoster}</p>
+                              </div>
+                            </div>
+                            <div className="session-time d-flex align-items-center justify-content-between">
+                              <a href="#" className="btn btn-default st-btn rounded justify-content-end" onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                              <Button className='buttonsdownload'
+                                onClick={() => {
+                                  // alert('clicked');
+                                }}
+                              >
+                                <img src={download} alt="Student Join" className="addimg" />
+                                Download
+                              </Button>
+                            </div>
+                   
                           </div>
                         </div>
-                        <div className="session-time d-flex align-items-center justify-content-between">
-                          <span className="className-time">{data.timing}</span>
-                          <a href="#" className="btn btn-default st-btn rounded justify-content-end" onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
-                        </div>
-                        <div className="session-time d-flex align-items-center justify-content-between">
-                          <Button className='buttonsdownload'
-                          // onClick={() => Navigate("/createcourse")}
-                          >
-                            <img src={upload} alt="Student Join" className="addimg" />
-                            Upload
 
-                          </Button>
-                          <Button className='buttonsdownload'
-                            onClick={() => {
-                              // alert('clicked');
-                            }}
-                          >
-                            <img src={download} alt="Student Join" className="addimg" />
-                            Download
-                          </Button>
+                        <div className="col-md-4">
+                          <div className="feature-db butoonsss">
+
+                            <img src={reactangle1865}
+                              alt="student" className="inactivepdfimage mt-2" />
+                    
+                            <div className="butoonsss">
+                              <Button className='buttonsdownload mt-2'
+                              // onClick={() => Navigate("/createcourse")}
+                              >
+                                <img src={upload} alt="Student Join" className="addimg" />
+                                Upload
+
+                              </Button>
+                              <input
+          type="file"
+          ref={hiddenFileInput}
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
+        />
+                            </div>
+                            <div className="butoonsss">
+
+                              <Button className='buttonsdownload mt-2 mb-2'
+                                onClick={() => {
+                                  fileDownload(data.pdfDocumentName)
+                                }}
+                              >
+                                <img src={download} alt="Student Join" className="addimg" />
+                                Download
+                              </Button>
+                            </div>
+                          </div>
                         </div>
                       </div>
+
                     </div>
 
                   )
@@ -234,16 +293,14 @@ function Studentdashboard() {
             </div>
             <div className="row student-wrap px-4">
               {/* <Popularcourses /> */}
-              {DATA && DATA.map((data) => {
+              {courselist.map((data) => {
                 return (
-
                   <div key={data.course} className="col-md-4 mb-4">
-
                     <div className="popular-feature-db position-relative">
                       <div className="popular-icon-db d-flex align-items-center">
-                        <img src={reactangle1865} alt="student" className="img-fluid me-3" />
+                        <img src={data.courseImageName} alt="student" className="img-fluid me-3" />
                         <div className="popular-content">
-                          <h5 className="mb-0">{data.title}</h5>
+                          <h5 className="mb-0">{data.courseTitle}</h5>
                         </div>
                       </div>
                       <div className="popular-time d-flex align-items-center justify-content-between">

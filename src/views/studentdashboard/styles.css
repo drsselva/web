@@ -1,19 +1,46 @@
-.titlecourse{
-    margin-right: 10px!important;
-    color:white
+.titlecourse {
+    margin-right: 10px !important;
+    color: black;
+    margin-top: 25px;
+    font-size:medium;
 }
-.buttonsdownload{
-    background-color: #e6a31c;
-    color: white;
-    height: 30px;
-    margin-top: -12px;
+.className-time{
+    font-size: small!important;
 }
+.buttonsdownload {
+    background-color: #e6a31c !important;
+    color: white !important;
+    /* height: 30px; */
+    /* margin-top: -25px; */
+}
+
 .buttonsdownload:hover {
-    background: rgb(48 151 0 / 96%);
-    color:black
+    background: rgb(48 151 0 / 96%) !important;
+    color: black !important
 }
-.addimg{
+
+.butoonsss {
+    text-align: center;
+    /* margin-top: 20px; */
+}
+
+.addimg {
     width: 20px;
     height: 20px;
     margin-right: 10px;
+}
+
+.inactiveimage {
+    width: 100px;
+    height: 100px !important;
+    margin-left: 15px;
+    /* margin-right: 10px; */
+    /* margin-top: 10px; */
+    object-fit: contain;
+}
+.inactivepdfimage{
+    width: 57px;
+    height: 57px !important;
+    text-align: center!important;
+    align-self: center;
 }

@@ -14,7 +14,10 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import './styles.css'
+import { useNavigate } from 'react-router-dom'
+
 function Createcourse() {
+   const Navigate = useNavigate()
 
    const [uploadData, setUploadData] = useState()
    const [title, settitle] = useState("")
@@ -70,28 +73,50 @@ function Createcourse() {
    // console.log(changeddate, "datw")
 
    const submit = () => {
-     
+      if(title == ""){
+         toast.error("Please Enter the title")
+      }
+      else if(contentImage == ""){
+         toast.error("Please Select the Content Image")
+      }
+      else if(datetime == ""){
+         toast.error("Please Select the Scheduled Date and Time")
+      }
+      else if(Description == ""){
+         toast.error("Please Enter The Description")
+      }
+      else if(Content == ""){
+         toast.error("Please Select the Content")
+      }
+      else if(Feedbackform == ""){
+         toast.error("Please Select the Feedbackform")
+      }
+      else{
 
 
       var changeddate = moment(datetime).format("YYYY-MM-DD HH:mm:ss");
       // console.log(changeddate,"datw")
       let formData = new FormData();
-      var data ={
-
-      }
       // formData.append("file", uploadData)
-     
+      formData.append("imageB64", contentImage)
+      formData.append("videoFile", Content)
+      formData.append("pdfFile", Feedbackform)
+      formData.append("title", title)
+      formData.append("scheduledTime", changeddate)
+      formData.append("description", Description)
+      formData.append("educatorId", EducatorId)
 
       axios.post("http://44.202.89.70:8989/course/session/create", formData)
          .then((res) => {
             console.log(res.data, "responsecreatecourse")
-            
+            toast.success("Course Created Successfully")
+            Navigate("/educatordashboard")
          })
          .catch((err) => {
-            console.log(err, "ssssssssssss")
+            console.log(err.response.data, "ssssssssssss")
          })
 
-      
+      }
    };
    // const submit = async () => {
    //    // if(title == ""){

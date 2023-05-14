@@ -10,7 +10,7 @@ const educatorAllCourseSlice = createSlice({
     initialState,
     reducers: {
         geteducatorAllCourse: (state, { payload }) => {
-            state.logindetails = payload
+            state.educatorAllCourse = payload
         },
 
 
@@ -31,8 +31,8 @@ export function getcourselistEducatorApi(payload) {
                 method: "get",
                 url: `${BASE_URLAPI}` + "course/session/getCourseByEducator/"+payload,
             })
-            console.log(response.data,"getcourselistEducatorApi")
-            dispatch(geteducatorAllCourse(response.data))
+            console.log(response,"getcourselistEducatorApi")
+            dispatch(geteducatorAllCourse(response))
             // dispatch(fetchcart(payload.token))
         }
         catch (err) {
