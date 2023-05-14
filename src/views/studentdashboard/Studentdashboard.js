@@ -5,7 +5,7 @@ import Footer from '../../component/Footer/Footer'
 import Header from '../../component/Header/Header'
 import Crumbs from '../../component/Crumbs/Crumbs'
 import ellipse from "../../assets/img/student-db/ellipse.png"
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Sessions from '../../microcomponents/sessions/Sessions'
 import Popularcourses from '../../microcomponents/popularcourse/Popularcourses'
 import axios from 'axios'
@@ -26,6 +26,7 @@ import rectange1834 from "../../assets/img/student-db/rectangle1834.png"
 import { Container, Col, Row, } from 'react-bootstrap';
 import moment from 'moment'
 import { saveAs } from 'file-saver';
+import { toast } from 'react-toastify'
 
 function Studentdashboard() {
   const Navigate = useNavigate()
@@ -39,8 +40,12 @@ function Studentdashboard() {
   const [getimage, setgetimage] = useState('')
   const [emailid, setemailid] = useState('')
   const [setidd, setsetid] = useState('')
+  const [EducatorId, setEducatorId] = useState('')
+  const [CourseID, setCourseID] = useState('')
+
   const [courselist, setcourselist] = useState([])
   const [InactiveResponse, setInactiveResponse] = useState([])
+  const fileInput = useRef(null);
 
 
   const field = {
@@ -91,18 +96,87 @@ function Studentdashboard() {
       })
   }
 
-  
+
 
 
   const fileDownload = (title) => {
+    let data = JSON.stringify({
+      "filePath": title
+    });
+
+    let config = {
+      method: 'post',
+      url: `${BASE_URLAPI}` + "course/session/download",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      responseType: 'blob',
+      data: data
+    };
+
+    axios.request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        try {
+
+          const url = URL.createObjectURL(new Blob([response.data]));
+
+          const link = document.createElement("a");
+
+          link.href = url;
+
+          link.download = title.split('/').pop();
+
+          document.body.appendChild(link);
+
+          link.click();
+
+          URL.revokeObjectURL(url);
+
+        } catch (e) {
+
+          console.log(e);
+
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+
     // console.log(payload,"payloadpayload")
-    var data ={
-      filePath : "6819b68b-e06e-4500-abf0-210c55d7f37e/web/add.png"
-    }
-    axios.post(`${BASE_URLAPI}` + "course/session/download",data)
+    // var data ={
+    //   filePath : "6819b68b-e06e-4500-abf0-210c55d7f37e/web/add.png"
+    // }
+    // axios.post(`${BASE_URLAPI}` + "course/session/download",data)
+    //   .then((res) => {
+    //     console.log(res.data, "\"fetch course session list Successfully\"")
+    //     saveAs(res.data, 'filename.ext');
+    //     // if (res.data.message == "\"fetch course session list Successfully\"") {
+    //     //   setcourselist(res.data.data.inActiveResponse)
+    //     //   setInactiveResponse(res.data.data.activeResponse)
+    //     // }
+    //   })
+    //   .catch((err) => {
+
+    //     console.log(err.response)
+    //   })
+  }
+
+
+
+  const fileUpload = (file) => {
+    console.log(CourseID, file, EducatorId, setidd, "checkingggggggggggggggg")
+    let data = new FormData();
+    data.append('courseId', CourseID);
+    data.append('educatorId', EducatorId);
+    data.append('learnerId', setidd);
+    data.append('feedbackFile', file);
+
+    axios.post("http://44.202.89.70:8989/learner/file/upload", data)
       .then((res) => {
-        console.log(res.data, "\"fetch course session list Successfully\"")
-        saveAs(res.data, 'filename.ext');
+        console.log(res, "\"fetch course session list Successfully\"")
+        toast.success("File Upload Successfully")
         // if (res.data.message == "\"fetch course session list Successfully\"") {
         //   setcourselist(res.data.data.inActiveResponse)
         //   setInactiveResponse(res.data.data.activeResponse)
@@ -110,20 +184,27 @@ function Studentdashboard() {
       })
       .catch((err) => {
 
-        console.log(err.response)
+        console.log(err.response.data)
       })
+
   }
 
   const hiddenFileInput = React.createRef();
-
- const handleButtonClick = () => {
+  const fileInputRef = useRef(null);
+  const handleButtonClick = (educatorId,courseid) => {
+    
+    console.log(educatorId,courseid,"sssssssssssssssss")
     hiddenFileInput.current.click();
+    // handleFileChange()
+    setEducatorId(educatorId)
+    setCourseID(courseid)
   }
 
- const handleFileChange = (event) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
+    fileUpload(file)
     // Do something with the selected file
-    console.log(file);
+    // console.log(file,educatorId,courseId,"checking");
   }
 
 
@@ -218,22 +299,23 @@ function Studentdashboard() {
                               <div className="col">
                                 <h5 className="titlecourse">{data.courseTitle}</h5>
                                 {/* <p>by {data.hoster}</p> */}
-                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
+                                <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
 
                               </div>
                             </div>
                             <div className="session-time d-flex align-items-center justify-content-between">
-                              <a href="#" className="btn btn-default st-btn rounded justify-content-end" onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                              <a href="#" className="btn btn-default st-btn rounded justify-content-end"
+                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
                               <Button className='buttonsdownload'
                                 onClick={() => {
-                                  // alert('clicked');
+                                  fileDownload(data.videoDoumentName)
                                 }}
                               >
                                 <img src={download} alt="Student Join" className="addimg" />
                                 Download
                               </Button>
                             </div>
-                   
+
                           </div>
                         </div>
 
@@ -242,21 +324,19 @@ function Studentdashboard() {
 
                             <img src={reactangle1865}
                               alt="student" className="inactivepdfimage mt-2" />
-                    
-                            <div className="butoonsss">
-                              <Button className='buttonsdownload mt-2'
-                              // onClick={() => Navigate("/createcourse")}
-                              >
-                                <img src={upload} alt="Student Join" className="addimg" />
-                                Upload
 
-                              </Button>
+                            <div className="butoonsss">
+                            <Button className='buttonsdownload mt-2'
+                                 onClick={()=>handleButtonClick(data.educatorId,data.id)}>
+                                  <img src={upload} alt="Student Join" className="addimg" />
+                                  Upload</Button>
                               <input
-          type="file"
-          ref={hiddenFileInput}
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
+                                type="file"
+                                ref={hiddenFileInput}
+                                style={{ display: 'none' }}
+                                onChange={handleFileChange}
+                              />
+                            
                             </div>
                             <div className="butoonsss">
 
