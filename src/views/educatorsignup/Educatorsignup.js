@@ -65,9 +65,9 @@ function Educatorsignup() {
                   Navigate("/educatorlogin")
                }
              
-               else{
-                  toast.success("Somethign went wrong")
-               }
+              else {
+                  toast.success("User Registered Successfully")
+              }
             })
             .catch((err) => {
                if(err.response.data.error.reason == "Email Id already exists "){
