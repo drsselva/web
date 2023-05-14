@@ -43,7 +43,7 @@ function Header2() {
       icon: <span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
          onClick={() => Navigate("/")}>
          <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
-         <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">STUDIES</span></h3>
+         <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">Studies</span></h3>
       </span>, path: "/"
    },
    // { icon: <IoIosHome />, name: "Home", path: "/home" },
@@ -79,7 +79,7 @@ function Header2() {
             <ListItemIcon>
                <img src={logoicon} alt="logo" title="" width="24" height="24" />
             </ListItemIcon>
-            <ListItemText primary={<h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">STUDIES</span></h3>} />
+            <ListItemText primary={<h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">Studies</span></h3>} />
          </ListItemButton>
          {DrawerMap.map((obj, index) => 'sub' in obj ? (
             <List>

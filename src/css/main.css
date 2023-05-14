@@ -1648,7 +1648,7 @@ a.link-in:hover {
 
 .footer::before {
   content: "";
-  background: url("../assets/img/bg/vector-86.svg") center center;
+  background: url("") center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;

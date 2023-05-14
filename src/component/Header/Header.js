@@ -57,7 +57,7 @@ function Header() {
       icon: <span style={{ cursor: "pointer" }} className="logo d-flex align-items-center"
          onClick={() => Navigate("/home")}>
          <img src={logoicon} className="me-2" alt="logo" title="" width="24" height="24" />
-         <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">DIGITECH</span></h3>
+         <h3 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">Studies</span></h3>
       </span>, path: "Home"
    }, { icon: <IoIosHome />, name: "Home", path: "/home" }, 
    // { icon: <IoMdListBox />, name: "Marketplace", path: "/marketplace" }
@@ -94,7 +94,7 @@ function Header() {
                // onClick={() => Navigate("/")}
                >
                <img src={logoicon} className="me-2" alt="logo" title="" width="64" height="64" />
-               <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">STUDIES</span></h1>
+               <h1 className="logo-title mt-1"><span className="default-color">GR</span><span className="secondary-color">IT</span> <span className="link-color">Studies</span></h1>
             </span>
             <nav id="navbar" className="navbar">
                <ul>
