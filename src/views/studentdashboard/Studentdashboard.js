@@ -103,7 +103,6 @@ function Studentdashboard() {
     let data = JSON.stringify({
       "filePath": title
     });
-<<<<<<< HEAD
 
     let config = {
       method: 'post',
@@ -188,105 +187,6 @@ function Studentdashboard() {
         console.log(err.response.data)
       })
 
-=======
-
-    let config = {
-      method: 'post',
-      url: `${BASE_URLAPI}`+"course/session/download",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      responseType: 'blob',
-      data : data
-    };
-
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      try {
-
-        const url = URL.createObjectURL(new Blob([response.data]));
-        
-        const link = document.createElement("a");
-        
-        link.href = url;
-        
-        link.download = title.split('/').pop();
-        
-        document.body.appendChild(link);
-        
-        link.click();
-        
-        URL.revokeObjectURL(url);
-        
-        } catch (e) {
-        
-        console.log(e);
-        
-        }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
-
-    // console.log(payload,"payloadpayload")
-    // var data ={
-    //   filePath : "6819b68b-e06e-4500-abf0-210c55d7f37e/web/add.png"
-    // }
-    // axios.post(`${BASE_URLAPI}` + "course/session/download",data)
-    //   .then((res) => {
-    //     console.log(res.data, "\"fetch course session list Successfully\"")
-    //     saveAs(res.data, 'filename.ext');
-    //     // if (res.data.message == "\"fetch course session list Successfully\"") {
-    //     //   setcourselist(res.data.data.inActiveResponse)
-    //     //   setInactiveResponse(res.data.data.activeResponse)
-    //     // }
-    //   })
-    //   .catch((err) => {
-
-    //     console.log(err.response)
-    //   })
-  }
-
-  const handleClick = () => {
-
-     if (fileInput && fileInput.current) {
-    
-     fileInput.current.click();
-    
-     }
-    
-    };
-
-  const fileUpload = (params, file) => {
-    console.log(params)
-    let data = new FormData();
-    data.append('courseId', params.id);
-    data.append('educatorId', params.educatorId);
-    data.append('learnerId', setidd);
-    data.append('feedbackFile', file);
-
-    // data.append('courseId', "227d6399-fa44-4d23-b097-702a75cb4bfa");
-    // data.append('educatorId', "adf4bf98-7726-4cd3-adb6-a602bed09ea7");
-    // data.append('learnerId', "17ed7f46-3be1-40cb-80c4-285add69a6db");
-    // data.append('feedbackFile', file);
-
-
-    let config = {
-      method: 'post',
-      url: `${BASE_URLAPI}`+'learner/file/upload',
-      data : data
-    };
-
-    axios.request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
->>>>>>> 682d257edcf8ff72f991b75234fc967adf2ccb51
   }
 
   const hiddenFileInput = React.createRef();
@@ -300,20 +200,11 @@ function Studentdashboard() {
     setCourseID(courseid)
   }
 
-<<<<<<< HEAD
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     fileUpload(file)
     // Do something with the selected file
     // console.log(file,educatorId,courseId,"checking");
-=======
- const handleFileChange = (event, data) => {
-    console.log(event)
-    console.log("%%%%%%%%%%%%%%%%%")
-    fileUpload(data, event.target.files[0])
-    event.target.value = ""
-    // Do something with the selected file
->>>>>>> 682d257edcf8ff72f991b75234fc967adf2ccb51
   }
 
 
@@ -433,7 +324,6 @@ function Studentdashboard() {
 
                             <img src={reactangle1865}
                               alt="student" className="inactivepdfimage mt-2" />
-<<<<<<< HEAD
 
                             <div className="butoonsss">
                             <Button className='buttonsdownload mt-2'
@@ -447,22 +337,6 @@ function Studentdashboard() {
                                 onChange={handleFileChange}
                               />
                             
-=======
-                    
-                            <div className="butoonsss">
-                              <Button className='buttonsdownload mt-2'
-                              onClick={() => handleClick()}
-                              >
-                                <img src={upload} alt="Student Join" className="addimg" />
-                                Upload
-                              <input
-                                      type="file"
-                                      ref={fileInput}
-                                      style={{ display: 'none' }}
-                                      onChange={(e)=>handleFileChange(e, data)}
-                                />
-                                </Button>
->>>>>>> 682d257edcf8ff72f991b75234fc967adf2ccb51
                             </div>
                             <div className="butoonsss">
 
