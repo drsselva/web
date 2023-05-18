@@ -2125,7 +2125,7 @@ span.progress-count {
 
 .feature-db {
   border-radius: 10px;
-  background-color: var(--color-white);
+  background: linear-gradient(108.27deg, rgba(135, 185, 106, 0.81), rgba(82, 74, 74, 0));
   box-shadow: 0 2px 24px rgb(0 0 0 / 8%);
 }
 
@@ -2133,7 +2133,8 @@ span.progress-count {
   padding: 10px 25px;
 }
 
-.feature-db .btn.btn-default.st-btn {
+
+.btn.btn-default.st-btn {
   padding: 7px 15px;
   line-height: 1;
   border: none;
@@ -2150,7 +2151,7 @@ span.class-time {
 
 .popular-feature-db {
   padding: 30px;
-  background: linear-gradient(108.27deg, rgba(187, 241, 160, 0.81), rgba(235, 235, 235, 0));
+  background: linear-gradient(108.27deg, rgba(135, 185, 106, 0.81), rgba(82, 74, 74, 0));
   box-shadow: 2px 2px 24px rgb(0 0 0 / 9%);
   border-radius: 10px;
 }
