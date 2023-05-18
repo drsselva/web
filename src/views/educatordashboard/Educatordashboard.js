@@ -194,7 +194,7 @@ const [courselist,setcourselist] = useState([])
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Course: </h5><span> Android Development Course, C++ Beginner Course</span></div>
+                          <h5>Name: </h5><span>{getnames ? getnames : getprofiles ? getprofiles.name : "Name"} </span></div>
                       </div>
                     </div>
                   </li>
