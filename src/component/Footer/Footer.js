@@ -18,8 +18,8 @@ function Footer() {
                         
                    <p>                                 
                                           
-                      <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.phone}</a> <br></br>
-                      <strong>Mobile:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.email}</a></p>
+                      <strong>Email:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.email}</a> <br></br>
+                      <strong>Mobile:</strong> <a href="mailto:aj@gritdigitech.com">{siteDetails.phone}</a></p>
                    
                 </div>
                 {/*<div className="col-lg-2 col-md-12 footer-links">

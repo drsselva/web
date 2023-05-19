@@ -1,5 +1,5 @@
 .plsudiv {
-    background-color: #252525;
+    background-color: hsl(131, 55%, 37%);
     border-radius: 10px;
     box-shadow: 2px 2px 24px rgb(0 0 0 / 9%);
     overflow: auto;
@@ -10,7 +10,7 @@
     width: 300px;
 }
 .plsudiv1 {
-    background-color: #252525;
+    background-color: #69ae6e;
     border-radius: 10px;
     box-shadow: 2px 2px 24px rgb(0 0 0 / 9%);
     overflow: auto;
