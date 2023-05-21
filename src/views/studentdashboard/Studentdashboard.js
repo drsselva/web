@@ -27,6 +27,7 @@ import { Container, Col, Row, } from 'react-bootstrap';
 import moment from 'moment'
 import { saveAs } from 'file-saver';
 import { toast } from 'react-toastify'
+import editdocumenticon from "../../assets/img/tutor-db/editdocumenticon-1.svg"
 
 function Studentdashboard() {
   const Navigate = useNavigate()
@@ -227,7 +228,7 @@ function Studentdashboard() {
                   <div className="student-img-wrap text-center">
 
 
-                    <img src={getimage ? getimage : getprofiles ? getprofiles.imageUrl : ellipse} />
+                    <img className='proimage' src={getimage ? getimage : getprofiles ? getprofiles.imageUrl : ellipse} />
 
                     {/* <video width="320" height="240" controls >
             <source src="http://44.202.89.70:8989/api/download028%20Passing%20Callback%20Functions%20Around.mp4" type="video/mp4"/>
@@ -263,6 +264,10 @@ function Studentdashboard() {
           </div>
         </li> */}
                 </ul>
+                <div class="mt-4 tutor-btn text-right">
+                  <a onClick={()=>Navigate("/EditProStudent")} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
+                  {/* <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a> */}
+                </div>
                 <div className="mt-2 student-progress">
                   <h5 className="mb-0">Attendance: </h5>
                   <span className="progress-count">85%</span>

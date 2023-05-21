@@ -32,6 +32,7 @@ import './App.css';
 import "./css/main.css"
 import ScrollToTop from './views/scrolltotop';
 import Editprofile from './views/editprofile/Editprofile';
+import EditProStudent from './views/EditProStudent/EditproStudent';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route exact path='/studentdashboard' element={<Studentdashboard />} />
         <Route exact path='/Editprofile' element={<Editprofile />} />
 
+        <Route exact path='/EditProStudent' element={<EditProStudent />} />
 
         <Route exact path='/educatorlogin' element={<Educatorlogin />} />
 

@@ -15,7 +15,8 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import './styles.css'
 import { useNavigate } from 'react-router-dom'
-
+import Modal from 'react-modal';
+import LoadingSpinner from '../LoadingSpinner/Loadingspinner'
 function Createcourse() {
    const Navigate = useNavigate()
 
@@ -27,7 +28,8 @@ function Createcourse() {
    const [Content, setContent] = useState("")
    const [Feedbackform, setFeedbackform] = useState("")
    const [EducatorId, setEducatorId] = useState("")
-
+   const [modalIsOpen, setIsOpen] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
 
 
    useEffect(() => {
@@ -93,7 +95,7 @@ function Createcourse() {
       }
       else{
 
-
+         setIsOpen(true)
       var changeddate = moment(datetime).format("YYYY-MM-DD HH:mm:ss");
       // console.log(changeddate,"datw")
       let formData = new FormData();
@@ -111,8 +113,10 @@ function Createcourse() {
             console.log(res.data, "responsecreatecourse")
             toast.success("Course Created Successfully")
             Navigate("/educatordashboard")
+            setIsOpen(false)
          })
          .catch((err) => {
+            setIsOpen(false)
             console.log(err.response.data, "ssssssssssss")
          })
 
@@ -175,6 +179,18 @@ function Createcourse() {
       }
 
    }
+
+   const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    };
+    
    return (
       <>
          <Header />
@@ -256,6 +272,15 @@ function Createcourse() {
 
             </section>
          </main>
+         <Modal
+        isOpen={modalIsOpen}
+      //   onAfterOpen={afterOpenModal}
+      //   onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+     <LoadingSpinner />
+      </Modal>
          <Footer />
       </>
    )

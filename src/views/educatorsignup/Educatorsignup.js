@@ -58,7 +58,7 @@ function Educatorsignup() {
          axios.post("http://44.202.89.70:8989/api/user/create", data)
             .then((res) => {
                console.log(res.data,"aasssssssssssssssss")
-               if (res.data.data == "User created successfully." && res.data.error == null) {
+               if (res.data.message == "User created successfully." && res.data.error == null) {
                   setFormValues(initialValues);
                   setFormErrors({})
                   toast.success("User Registered successfully.")

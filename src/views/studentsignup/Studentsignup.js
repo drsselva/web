@@ -65,15 +65,13 @@ function Studentsignup({ signupUsers, signUsers, logUsersResponse, loading }) {
          axios.post("http://44.202.89.70:8989/api/user/create", data)
             .then((res) => {
                console.log(res.data, "aasssssssssssssssss")
-               if (res.data.data == "User created successfully." && res.data.error == null) {
+               if (res.data.message == "User created successfully." ) {
                 toast.success("User Registered successfully.")
+                Navigate("/studentlogin")
                   setFormValues(initialValues);
                   setFormErrors({})
-                  Navigate("/studentlogin")
              }
-             else{
-                toast.success(" User Registered successfully.")
-             }
+          
           })
           .catch((err) => {
              if(err.response.data.error.reason == "Email Id already exists "){
