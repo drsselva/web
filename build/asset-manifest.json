@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f986e76a.css",
-    "main.js": "/static/js/main.e538521a.js",
+    "main.css": "/static/css/main.e1fac855.css",
+    "main.js": "/static/js/main.acf19a01.js",
     "static/js/787.69cd835b.chunk.js": "/static/js/787.69cd835b.chunk.js",
     "static/media/gordon.svg": "/static/media/gordon.71c522ee4b98d9a5ddf30d884f427314.svg",
     "static/media/starting-a-business-projectpana-1.svg": "/static/media/starting-a-business-projectpana-1.436664b2e0bebf5b9f175f0143bceb97.svg",
@@ -77,12 +77,12 @@
     "static/media/group1.svg": "/static/media/group1.2c7bf5bc0e920e2030e2.svg",
     "static/media/vector-89.svg": "/static/media/vector-89.848f5d2d98352e551c38484660b7c394.svg",
     "static/media/cta-bg.html": "/static/media/cta-bg.da4037b53a6054e93c1e.html",
-    "main.f986e76a.css.map": "/static/css/main.f986e76a.css.map",
-    "main.e538521a.js.map": "/static/js/main.e538521a.js.map",
+    "main.e1fac855.css.map": "/static/css/main.e1fac855.css.map",
+    "main.acf19a01.js.map": "/static/js/main.acf19a01.js.map",
     "787.69cd835b.chunk.js.map": "/static/js/787.69cd835b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f986e76a.css",
-    "static/js/main.e538521a.js"
+    "static/css/main.e1fac855.css",
+    "static/js/main.acf19a01.js"
   ]
 }
