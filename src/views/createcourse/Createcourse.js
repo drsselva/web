@@ -79,16 +79,16 @@ function Createcourse() {
          toast.error("Please Enter the title")
       }
       else if(contentImage == ""){
-         toast.error("Please Select the Content Image")
+         toast.error("Please select the content image less than 1 MB")
       }
       else if(datetime == ""){
          toast.error("Please Select the Scheduled Date and Time")
       }
       else if(Description == ""){
-         toast.error("Please Enter The Description")
+         toast.error("Please enter the description not more than 300 characters")
       }
       else if(Content == ""){
-         toast.error("Please Select the Content")
+         toast.error("Please Select the Content Less than 7MB")
       }
       else if(Feedbackform == ""){
          toast.error("Please Select the Feedbackform")
@@ -238,13 +238,13 @@ function Createcourse() {
                               </div> */}
 
                               <div class="form-group">
-                                 <textarea className='textareabox' name="message" onChange={(e) => setDescription(e.target.value)} rows="5" required placeholder="Short Description" ></textarea>
+                                 <textarea className='textareabox' name="message" onChange={(e) => setDescription(e.target.value)} rows="5" required placeholder="Short Description Less than  300 characters" ></textarea>
                               </div>
 
 
                               <div class="form-group uploadd">
                                  <label class="uploading uploadingtext">Upload Content</label>
-                                 <input type="file" onChange={(e) => setContent(e.target.files[0])} name="fileupload" id="fileupload" class="form-control mb-3" placeholder="Upload Your content" />
+                                 <input type="file" onChange={(e) => setContent(e.target.files[0])} name="fileupload" id="fileupload" class="form-control mb-3" placeholder="Upload Your content Less than 7MB" />
                               </div>
 
                               <div class="form-group uploadd">
