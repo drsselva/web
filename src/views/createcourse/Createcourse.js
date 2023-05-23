@@ -63,7 +63,7 @@ function Createcourse() {
       let formData = new FormData();
       formData.append("file", uploadData)
 
-      axios.post("http://44.202.89.70:8989/api/uploadFile", formData, { headers })
+      axios.post("http://44.203.0.129:8989/api/uploadFile", formData, { headers })
          .then((res) => {
             console.log(res)
          })
@@ -108,7 +108,7 @@ function Createcourse() {
       formData.append("description", Description)
       formData.append("educatorId", EducatorId)
 
-      axios.post("http://44.202.89.70:8989/course/session/create", formData)
+      axios.post("http://44.203.0.129:8989/course/session/create", formData)
          .then((res) => {
             console.log(res.data, "responsecreatecourse")
             toast.success("Course Created Successfully")
