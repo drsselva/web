@@ -28,6 +28,8 @@ import moment from 'moment'
 import { saveAs } from 'file-saver';
 import { toast } from 'react-toastify'
 import editdocumenticon from "../../assets/img/tutor-db/editdocumenticon-1.svg"
+import HoverVideoPlayer from "react-hover-video-player";
+
 
 function Studentdashboard() {
   const Navigate = useNavigate()
@@ -85,8 +87,7 @@ function Studentdashboard() {
     // console.log(payload,"payloadpayload")
     axios.get(`${BASE_URLAPI}` + "course/session/getAllCourse")
       .then((res) => {
-        console.log(res, "\"fetch course session list Successfully\"")
-        if (res.data.message == "\"fetch course session list Successfully\"") {
+        if (res.data.message == "Fetch course session list Successfully") {
           setcourselist(res.data.data.inActiveResponse)
           setInactiveResponse(res.data.data.activeResponse)
         }
@@ -194,7 +195,6 @@ function Studentdashboard() {
   const fileInputRef = useRef(null);
   const handleButtonClick = (educatorId,courseid) => {
     
-    console.log(educatorId,courseid,"sssssssssssssssss")
     hiddenFileInput.current.click();
     // handleFileChange()
     setEducatorId(educatorId)
@@ -298,15 +298,34 @@ function Studentdashboard() {
                         <div className="col-md-8">
 
                           <div className="feature-db position-relative">
-                            <div className='row '>
+                            {/* <div className='row '>
                               <img src={data.courseImageName}
                                 alt="student" className="inactiveimage" />
                               <div className="col">
                                 <h5 className="titlecourse">{data.courseTitle}</h5>
-                                {/* <p>by {data.hoster}</p> */}
                                 <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
-
                               </div>
+                            </div> */}
+                            <HoverVideoPlayer
+                            videoSrc={data.videoDoumentName}
+                            // videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                            pausedOverlay={
+                            <div>
+                            <img src={data.courseImageName}
+                            alt="student" className="inactiveimage" />
+                            <div className="col">
+                              <h5 className="titlecourse">{data.courseTitle}</h5>
+                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
+                            </div>
+                          </div>
+                          }
+                            loadingOverlay={
+                            <div className="loading-overlay">
+                              <div className="loading-spinner" />
+                            </div>}
+                          />
+                            <div>
+
                             </div>
                             <div className="session-time d-flex align-items-center justify-content-between">
                               <a href="#" className="btn btn-default st-btn rounded justify-content-end"

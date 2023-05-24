@@ -73,7 +73,7 @@ function Educatorlogin() {
                toast.error(err.response.data.error.reason)
             }
             else {
-               toast.error("Somethign went wrong")
+               toast.error("Something went wrong")
             }
             console.log(err.response.data.error.reason)
          })

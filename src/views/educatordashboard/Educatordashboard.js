@@ -12,6 +12,7 @@ import recatange858 from "../../assets/img/tutor-db/rectangle858.png"
 import Crumbs from '../../component/Crumbs/Crumbs'
 import Sessions from '../../microcomponents/sessions/Sessions'
 import editdocumenticon from "../../assets/img/tutor-db/editdocumenticon-1.svg"
+import materialsymbolsvideocamerafront from "../../assets/img/student-db/materialsymbolsvideocamerafront.svg"
 import editdocumenticon1 from "../../assets/img/tutor-db/editdocumenticon-1.svg"
 import Aos from 'aos'
 import ReactStars from "react-rating-stars-component";
@@ -48,6 +49,7 @@ function Educatordashboard({ history }) {
   const [getimage, setgetimage] = useState('')
   const [emailid, setemailid] = useState('')
   const [setidd, setsetid] = useState('')
+  const [courselist,setcourselist] = useState([])
 
   useEffect(() => {
     var data = localStorage.getItem("getprofiledata")
@@ -66,18 +68,16 @@ function Educatordashboard({ history }) {
   }, [])
 
 
-const [courselist,setcourselist] = useState([])
-
-
   const getcourselistEducatorApi = async (dataid) => {
     // console.log(payload,"payloadpayload")
     axios.get(`${BASE_URLAPI}` + "course/session/getCourseByEducator/" + dataid)
     .then((res) => {
-      console.log(res,"\"fetch course session list Successfully\"")
-      if (res.data.message == "\"fetch course session list Successfully\"") {
-        setcourselist(res.data.data)
-      }
-   })
+        console.log(res)
+        if (res.data.message == "Fetch course session list Successfully") {
+          console.log("********************")
+          setcourselist(res.data.data.response)
+        }
+      })
    .catch((err) => {
     
       console.log(err.response)
@@ -233,7 +233,47 @@ const [courselist,setcourselist] = useState([])
           </div>
         </section>
 
+        <section id="session-db" className="session-db py-60 pt-0">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12">
+                <h2 className="fs-4 mb-4">Active Sessions</h2>
+              </div>
+            </div>
+            <div className="row student-wrap px-5">
 
+              <>
+                {courselist && courselist.map((data) => {
+                  return (
+                    <div className="col-md-6">
+                      <div className='row mt-3' >
+                        <div className="col-md-8">
+
+                          <div className="feature-db position-relative">
+                            
+                            <div>
+                            <img src={data.courseImageName}
+                            alt="student" className="inactiveimage" />
+                          </div>
+                            <div>
+                            </div>
+                            <div className="session-time d-flex align-items-center justify-content-between">
+                              <a href="#" className="btn btn-default st-btn rounded justify-content-end"
+                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  )
+                })}
+              </>
+            </div>
+
+          </div>
+        </section>
         <section id="session-db" className="session-db py-60 pt-0">
           <div className="container">
             <div className="row">

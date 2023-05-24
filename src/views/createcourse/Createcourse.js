@@ -29,25 +29,16 @@ function Createcourse() {
    const [Feedbackform, setFeedbackform] = useState("")
    const [EducatorId, setEducatorId] = useState("")
    const [modalIsOpen, setIsOpen] = useState(false);
+   const [link, setLink] = useState("")
    const [isLoading, setIsLoading] = useState(false);
 
 
    useEffect(() => {
+      console.log("*****",localStorage)
       var useriddd = localStorage.getItem("useriddd")
       setEducatorId(useriddd)
    }, [])
 
-
-
-
-
-   //  const useStyles = makeStyles((theme) => ({
-   //      image: {
-   //        width: '100%', // Set the width of the image
-   //        height: 'auto', // Set the height of the image
-   //        marginBottom: theme.spacing(2), // Set the margin bottom of the image
-   //      },
-   //    }));
    const options = [
       { value: 'option1', label: 'Option 1' },
       { value: 'option2', label: 'Option 2' },
@@ -94,8 +85,7 @@ function Createcourse() {
          toast.error("Please Select the Feedbackform")
       }
       else{
-
-         setIsOpen(true)
+      setIsOpen(true)
       var changeddate = moment(datetime).format("YYYY-MM-DD HH:mm:ss");
       // console.log(changeddate,"datw")
       let formData = new FormData();
@@ -107,6 +97,7 @@ function Createcourse() {
       formData.append("scheduledTime", changeddate)
       formData.append("description", Description)
       formData.append("educatorId", EducatorId)
+      formData.append("courseLink", link)
 
       axios.post("http://44.203.0.129:8989/course/session/create", formData)
          .then((res) => {
@@ -147,7 +138,7 @@ function Createcourse() {
 
    //       const response = await axios({
    //          method: "post",
-   //          url:'http://44.202.89.70:8989/course/session/create',
+   //          url:'http://44.203.0.129:8989/course/session/create',
    //          data: formData,
    //          // headers: { "Content-Type": "multipart/form-data" },
    //       })
@@ -212,6 +203,10 @@ function Createcourse() {
                               <div class="form-group">
                                  <label class="uploadd uploading uploadingtext">Upload Content Image</label>
                                  <input type="file" onChange={(e) => contentimage64(e.target.files[0])} name="fileupload" id="fileupload" class="form-control mb-3" placeholder="Upload content Image" />
+                              </div>
+                              <div class="form-group">
+                                 <label class="uploadd uploading uploadingtext">Add Google Meet Link</label>
+                                 <input type="link" onChange={(e) => setLink(e.target.value)} class="form-control" placeholder="https://" required/>
                               </div>
                               {/* <div class="form-group mt-3">
                               <select class="form-select" required>
