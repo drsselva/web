@@ -256,10 +256,11 @@ function Educatordashboard({ history }) {
                             alt="student" className="inactiveimage" />
                           </div>
                             <div>
+                           <center ><h5 className="titlecourse">{data.courseTitle}</h5></center>
                             </div>
                             <div className="session-time d-flex align-items-center justify-content-between">
-                              <a href="#" className="btn btn-default st-btn rounded justify-content-end"
-                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                              <center><a href="#" className="btn btn-default st-btn rounded justify-content-end"
+                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a></center>
                             </div>
                           </div>
                         </div>
