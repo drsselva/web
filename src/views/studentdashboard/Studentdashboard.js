@@ -243,7 +243,7 @@ function Studentdashboard() {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Name: </h5><span>{getnames ? getnames : getprofiles ? getprofiles.name : "Name"}</span>                    </div>
+                          <h5>Name: </h5><h4><span>{getnames ? getnames : getprofiles ? getprofiles.name : "Name"}</span> </h4>                   </div>
                       </div>
                     </div>
                   </li>
@@ -251,7 +251,7 @@ function Studentdashboard() {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a></div>
+                          <h5>Email: </h5><h4><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a></h4></div>
                       </div>
                     </div>
                   </li>
@@ -315,7 +315,7 @@ function Studentdashboard() {
                             alt="student" className="inactiveimage" />
                             <div className="col">
                               <h5 className="titlecourse">{data.courseTitle}</h5>
-                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
+                              {/* <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> */}
                             </div>
                           </div>
                           }

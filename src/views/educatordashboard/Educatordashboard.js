@@ -194,7 +194,7 @@ function Educatordashboard({ history }) {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Name: </h5><span>{getnames ? getnames : getprofiles ? getprofiles.name : "Name"} </span></div>
+                          <h5>Name: </h5><h4><span>{getnames ? getnames : getprofiles ? getprofiles.name : "Name"} </span></h4></div>
                       </div>
                     </div>
                   </li>
@@ -202,7 +202,7 @@ function Educatordashboard({ history }) {
                     <div className="feature-box-list d-flex align-items-start">
                       <div className="fb-list-inner">
                         <div className="d-flex mb-0">
-                          <h5>Email: </h5><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a>                  </div>
+                          <h5>Email: </h5><h4><a href="mailto:alex56@gmail.com">{emailid ? emailid : getprofiles ? getprofiles.email : "alex56@gmail.com"}</a></h4></div>
                       </div>
                     </div>
                   </li>
@@ -279,7 +279,7 @@ function Educatordashboard({ history }) {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4"> Upload Content  </h2>
+                <h2 className="fs-4 mb-4">Upload Content</h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
@@ -293,7 +293,7 @@ function Educatordashboard({ history }) {
 
         <Container className='conatinerstyle'>
           <div class="col-md-12">
-            <h2 class="fs-4 mb-4">Uploaded Content</h2>
+            <h2 color class="fs-4 mb-4">Uploaded Content</h2>
           </div>
           <div class="row student-wrap px-4 position-relative">
             <Row>
