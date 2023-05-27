@@ -166,7 +166,7 @@ function Educatordashboard({ history }) {
       <Crumbs data={field} />
 
 
-      <main id="main" className="student-db-main">
+      <main id="main" className="student-db-main data-img">
 
         <section id="student-db" className="student-db py-60">
           <div className="container">
