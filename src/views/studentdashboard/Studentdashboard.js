@@ -285,7 +285,7 @@ function Studentdashboard() {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Active Sessions</h2>
+                <h2 className="fs-4 mb-4"><u>Active Sessions</u></h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
@@ -392,7 +392,7 @@ function Studentdashboard() {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Upcoming Sessions</h2>
+                <h2 className="fs-4 mb-4"><u>Upcoming Sessions</u></h2>
               </div>
             </div>
             <div className="row student-wrap px-4">

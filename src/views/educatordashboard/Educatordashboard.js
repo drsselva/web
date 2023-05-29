@@ -237,7 +237,7 @@ function Educatordashboard({ history }) {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Active Sessions</h2>
+                <h2 className="fs-4 mb-4"><u>Active Sessions</u></h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
@@ -279,7 +279,7 @@ function Educatordashboard({ history }) {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4">Upload Content</h2>
+                <h2 className="fs-4 mb-4"><u>Upload Content</u></h2>
               </div>
             </div>
             <div className="row student-wrap px-5">
@@ -293,7 +293,7 @@ function Educatordashboard({ history }) {
 
         <Container className='conatinerstyle'>
           <div class="col-md-12">
-            <h2 color class="fs-4 mb-4">Uploaded Content</h2>
+            <h2 color class="fs-4 mb-4"><u>Uploaded Content</u></h2>
           </div>
           <div class="row student-wrap px-4 position-relative">
             <Row>
