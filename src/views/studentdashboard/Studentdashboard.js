@@ -218,7 +218,7 @@ function Studentdashboard() {
 
       {/* <input type="file" onChange={(e)=>setUploadData(e.target.files[0])}/>
   <button onClick={uploadFile}>Upload</button> */}
-      <main id="main" className="student-db-main data-img">
+      <main id="main" className="student-db-main">
 
         <section id="student-db" className="student-db py-60">
           <div className="container">
@@ -315,7 +315,7 @@ function Studentdashboard() {
                             alt="student" className="inactiveimage" />
                             <div className="col">
                               <h5 className="titlecourse">{data.courseTitle}</h5>
-                              {/* <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> */}
+                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> 
                             </div>
                           </div>
                           }

@@ -166,7 +166,7 @@ function Educatordashboard({ history }) {
       <Crumbs data={field} />
 
 
-      <main id="main" className="student-db-main data-img">
+      <main id="main" className="student-db-main ">
 
         <section id="student-db" className="student-db py-60">
           <div className="container">
@@ -182,7 +182,8 @@ function Educatordashboard({ history }) {
                       count={5}
                       onChange={ratingChanged}
                       size={24}
-                      activeColor="#ffd700"
+                      acti
+                      olor="#ffd700"
                     />
                     </div> */}
                   </div>
