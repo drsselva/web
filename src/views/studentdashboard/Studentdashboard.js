@@ -168,7 +168,7 @@ function Studentdashboard() {
 
 
   const fileUpload = (file) => {
-    console.log(CourseID, file, EducatorId, setidd, "checkingggggggggggggggg")
+    console.log(CourseID, file, EducatorId, setidd)
     let data = new FormData();
     data.append('courseId', CourseID);
     data.append('educatorId', EducatorId);
@@ -307,8 +307,7 @@ function Studentdashboard() {
                               </div>
                             </div> */}
                             <HoverVideoPlayer
-                            videoSrc={data.videoDoumentName}
-                            // videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                            videoSrc={data.bucketUrl+data.videoDoumentName}
                             pausedOverlay={
                             <div>
                             <img src={data.courseImageName}
