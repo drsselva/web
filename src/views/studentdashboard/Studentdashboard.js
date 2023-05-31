@@ -208,6 +208,36 @@ function Studentdashboard() {
     // console.log(file,educatorId,courseId,"checking");
   }
 
+  const videoRef = useRef(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  
+  const handleFullScreen = () => {
+    const videoElement = videoRef.current;
+
+    if (!isFullScreen) {
+      if (videoElement.requestFullscreen) {
+        videoElement.requestFullscreen();
+      } else if (videoElement.mozRequestFullScreen) {
+        videoElement.mozRequestFullScreen();
+      } else if (videoElement.webkitRequestFullscreen) {
+        videoElement.webkitRequestFullscreen();
+      } else if (videoElement.msRequestFullscreen) {
+        videoElement.msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+    setIsFullScreen(!isFullScreen);
+  };
 
   return (
     <>
@@ -218,7 +248,7 @@ function Studentdashboard() {
 
       {/* <input type="file" onChange={(e)=>setUploadData(e.target.files[0])}/>
   <button onClick={uploadFile}>Upload</button> */}
-      <main id="main" className="student-db-main">
+      <main id="main" className="student-db-main data-img">
 
         <section id="student-db" className="student-db py-60">
           <div className="container">
@@ -298,31 +328,31 @@ function Studentdashboard() {
                         <div className="col-md-8">
 
                           <div className="feature-db position-relative">
-                            {/* <div className='row '>
-                              <img src={data.courseImageName}
-                                alt="student" className="inactiveimage" />
-                              <div className="col">
-                                <h5 className="titlecourse">{data.courseTitle}</h5>
-                                <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span>
-                              </div>
-                            </div> */}
                             <HoverVideoPlayer
+                            ref={videoRef}
+                            onClick={handleFullScreen}
+                            controls={!isFullScreen}
                             videoSrc={data.bucketUrl+data.videoDoumentName}
                             pausedOverlay={
-                            <div>
                             <img src={data.courseImageName}
-                            alt="student" className="inactiveimage" />
-                            <div className="col">
-                              <h5 className="titlecourse">{data.courseTitle}</h5>
-                              <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> 
-                            </div>
-                          </div>
-                          }
+                            alt="student"
+                            style={{
+                              // Make the image expand to cover the video's dimensions
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                            }}
+                            /> 
+                            }
                             loadingOverlay={
                             <div className="loading-overlay">
                               <div className="loading-spinner" />
                             </div>}
                           />
+                          <div className="col">
+                              <h5 className="titlecourse">{data.courseTitle}</h5>
+                              {/* <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> */}
+                            </div>
                             <div>
 
                             </div>
