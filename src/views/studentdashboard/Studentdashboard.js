@@ -315,7 +315,7 @@ function Studentdashboard() {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <h2 className="fs-4 mb-4"><u>Active Sessions</u></h2>
+                <h2 className="fs-4 mb-4"><u>My Courses:</u></h2>
               </div>
             </div>
             <div className="row student-wrap px-5">

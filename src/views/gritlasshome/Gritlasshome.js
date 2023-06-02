@@ -15,7 +15,7 @@ function Gritlasshome() {
   const Navigate = useNavigate()
 
   const styleObj = {
-    fontSize: 46,
+    fontSize: 55,
 
   }
   const styleObj2 = {
@@ -25,7 +25,7 @@ function Gritlasshome() {
   }
 
   const field = {
-    type: "Learning as a Service",
+    type: "Learning Platform for Business to Business (B2B) ",
     content: "Passionate In Connecting Underserved Market To Succeed By Providing Equal Opportunity To WIN Life.",
 
   }
@@ -60,7 +60,7 @@ function Gritlasshome() {
           <div class="container position-relative">
             <div class="row d-flex justify-content-center">
               <div class="col-lg-6 text-center">
-                <h2 class="fs-1" style={styleObj} >Learning as a Service</h2>
+                <h2 class="fs-1" style={styleObj} >Learning Platform for B2B </h2>
                 <p class="lead" style={styleObj2}>Passionate In Connecting Underserved Market To Succeed By Providing Equal Opportunity To WIN Life.</p>
               </div>
             </div>
