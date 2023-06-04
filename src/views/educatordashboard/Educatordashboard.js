@@ -12,7 +12,6 @@ import recatange858 from "../../assets/img/tutor-db/rectangle858.png"
 import Crumbs from '../../component/Crumbs/Crumbs'
 import Sessions from '../../microcomponents/sessions/Sessions'
 import editdocumenticon from "../../assets/img/tutor-db/editdocumenticon-1.svg"
-import materialsymbolsvideocamerafront from "../../assets/img/student-db/materialsymbolsvideocamerafront.svg"
 import editdocumenticon1 from "../../assets/img/tutor-db/editdocumenticon-1.svg"
 import Aos from 'aos'
 import ReactStars from "react-rating-stars-component";
@@ -21,8 +20,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import './styles.css'
 import { useDispatch, useSelector } from 'react-redux'
+import Card from '../../../src/component/Card/card'
 import { educatorAllCourseSelector } from '../../Slices/getallcoursesedu'
 import { BASE_URLAPI } from '../constant'
+
+
 function Educatordashboard({ history }) {
   const { educatorAllCourse } = useSelector(educatorAllCourseSelector)
   console.log(educatorAllCourse, "educatorAllCourseeducatorAllCourse")
@@ -170,7 +172,7 @@ function Educatordashboard({ history }) {
 
         <section id="student-db" className="student-db py-60">
           <div className="container">
-            <div className="row student-wrap">
+            <div className="row student-wrap" style={{ backgroundColor: 'lightgrey' }}>
               <div className="col-md-3 mt-0">
                 <div className="stu-feature-box">
                   <div className="student-img-wrap text-center">
@@ -225,7 +227,7 @@ function Educatordashboard({ history }) {
 
             </div> */}
                 <div class="mt-4 tutor-btn text-right">
-                  <a onClick={()=>Navigate("/editprofile")} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
+                  <a onClick={()=>Navigate("/editprofile")} style={{ backgroundColor: '#E75480' }} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
                   {/* <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a> */}
                 </div>
               </div>
@@ -241,33 +243,31 @@ function Educatordashboard({ history }) {
                 <h2 className="fs-4 mb-4"><u>Active Sessions</u></h2>
               </div>
             </div>
-            <div className="row student-wrap px-5">
+            <div className="row student-wrap px-5" style={{ backgroundColor: 'lightgrey' }}>
 
               <>
                 {courselist && courselist.map((data) => {
                   return (
-                    <div className="col-md-6">
-                      <div className='row mt-3' >
-                        <div className="col-md-8">
+                    <Card title={data.courseTitle} img={data.courseImageName} description="" isEducator />
+                    // <div className="col-md-6">
+                    //   <div className='row mt-3' >
+                    //     <div className="col-md-8">
 
-                          <div className="feature-db position-relative">
+                    //       <div className="feature-db position-relative">
                             
-                            <div>
-                            <img src={data.courseImageName}
-                            alt="student" className="inactiveimage" />
-                          </div>
-                            <div>
-                           <center ><h5 className="titlecourse">{data.courseTitle}</h5></center>
-                            </div>
-                            <div className="session-time d-flex align-items-center justify-content-between">
-                              <center><a href="#" className="btn btn-default st-btn rounded justify-content-end"
-                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a></center>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    //         <div>
+                    //         <img src={data.courseImageName}
+                    //         alt="student" className="inactiveimage" />
+                    //       </div>
+                    //         <div>
+                    //        <center ><h5 className="titlecourse">{data.courseTitle}</h5></center>
+                    //         </div>
+                            
+                    //       </div>
+                    //     </div>
+                    //   </div>
 
-                    </div>
+                    // </div>
 
                   )
                 })}
@@ -284,8 +284,8 @@ function Educatordashboard({ history }) {
               </div>
             </div>
             <div className="row student-wrap px-5">
-
-              <Sessions />
+            <Card isEducator isCreateCourse />
+              {/* <Sessions /> */}
             </div>
 
           </div>
@@ -312,25 +312,26 @@ function Educatordashboard({ history }) {
               {/* <Col className='col1' md={12}> */}
                 {/* <Slider {...settings}> */}
                 {courselist.map((e) => (
-
-                <Col className='col1' md={4}>
-                    <div className='plsudiv mt-3' >
-                      <a href="#" class="course-link">
-                        <div class="popular-icon-db mb-0 d-flex align-items-center">
-                          <img src={e.courseImageName} alt="student" class="img-fluid me-3" />
-                          <div class="popular-content">
-                            <h5 className='titlecolor'>{e.courseTitle}</h5>
-                            {/* <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span> */}
-                          </div>
-                        </div></a>
+                  <Card title={e.courseTitle} img={e.courseImageName} description="" isEducator isUploaded />
+                    
+              //   <Col className='col1' md={4}>
+              //       <div className='plsudiv mt-3' >
+              //         <a href="#" class="course-link">
+              //           <div class="popular-icon-db mb-0 d-flex align-items-center">
+              //             <img src={e.courseImageName} alt="student" class="img-fluid me-3" />
+              //             <div class="popular-content">
+              //               <h5 className='titlecolor'>{e.courseTitle}</h5>
+              //               {/* <span className='titlecolor'>Google</span> <span className='titlecolor'><span className='titlecolor'></span>48 Min</span> */}
+              //             </div>
+              //           </div></a>
                         
-                    </div>
+              //       </div>
 
                     
 
 
-                {/* </Slider> */}
-              </Col>
+              //   {/* </Slider> */}
+              // </Col>
                   ))}
 
               {/* <Col className='col1' md={3}>

@@ -28,7 +28,7 @@ import moment from 'moment'
 import { saveAs } from 'file-saver';
 import { toast } from 'react-toastify'
 import editdocumenticon from "../../assets/img/tutor-db/editdocumenticon-1.svg"
-import HoverVideoPlayer from "react-hover-video-player";
+import Card from '../../../src/component/Card/card';
 
 
 function Studentdashboard() {
@@ -208,36 +208,6 @@ function Studentdashboard() {
     // console.log(file,educatorId,courseId,"checking");
   }
 
-  const videoRef = useRef(null);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  
-  const handleFullScreen = () => {
-    const videoElement = videoRef.current;
-
-    if (!isFullScreen) {
-      if (videoElement.requestFullscreen) {
-        videoElement.requestFullscreen();
-      } else if (videoElement.mozRequestFullScreen) {
-        videoElement.mozRequestFullScreen();
-      } else if (videoElement.webkitRequestFullscreen) {
-        videoElement.webkitRequestFullscreen();
-      } else if (videoElement.msRequestFullscreen) {
-        videoElement.msRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-      }
-    }
-
-    setIsFullScreen(!isFullScreen);
-  };
 
   return (
     <>
@@ -251,11 +221,11 @@ function Studentdashboard() {
       <main id="main" className="student-db-main ">
 
         <section id="student-db" className="student-db py-60">
-          <div className="container">
-            <div className="row student-wrap">
+          <div className="container" >
+            <div className="row student-wrap" style={{ backgroundColor: 'lightgrey' }}>
               <div className="col-md-3 mt-0">
-                <div className="stu-feature-box">
-                  <div className="student-img-wrap text-center">
+                <div className="stu-feature-box" >
+                  <div className="student-img-wrap text-center" >
 
 
                     <img className='proimage' src={getimage ? getimage : getprofiles ? getprofiles.imageUrl : ellipse} />
@@ -295,7 +265,7 @@ function Studentdashboard() {
         </li> */}
                 </ul>
                 <div class="mt-4 tutor-btn text-right">
-                  <a onClick={()=>Navigate("/EditProStudent")} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
+                  <a onClick={()=>Navigate("/EditProStudent")} style={{ backgroundColor: '#E75480' }} class="btn btn-default tt-btn rounded"><img src={editdocumenticon} alt="Edit Profile" class="img-fluid me-2" />Edit Profile</a>
                   {/* <a href="#" onClick={() => Navigate("/createcourse")} class="btn btn-default tt-btn rounded ml-3"><img src={editdocumenticon1} alt="Edit Profile" class="img-fluid me-2" />Create Your Course</a> */}
                 </div>
                 <div className="mt-2 student-progress">
@@ -318,95 +288,79 @@ function Studentdashboard() {
                 <h2 className="fs-4 mb-4"><u>My Courses:</u></h2>
               </div>
             </div>
-            <div className="row student-wrap px-5">
+            <div className="row student-wrap px-5" style={{ backgroundColor: 'lightgrey' }}>
 
               <>
                 {InactiveResponse && InactiveResponse.map((data) => {
+                  console.log(data)
                   return (
-                    <div className="col-md-6">
-                      <div className='row mt-3' >
-                        <div className="col-md-8">
+                    <Card courseImageName= {data.courseImageName} bucketUrl={data.bucketUrl} videoDoumentName={data.videoDoumentName} 
+                    courseTitle={data.courseTitle} fileDownload={fileDownload} download={download} title={data.courseTitle} description={data.description} 
+                    educatorId={data.educatorId} id={data.id} pdfDocumentName={data.pdfDocumentName} />
+                    // <div className="col-md-6">
+                    //   <div className='row mt-3' >
+                    //     <div className="col-md-8">
 
-                          <div className="feature-db position-relative">
-                            <HoverVideoPlayer
-                            ref={videoRef}
-                            onClick={handleFullScreen}
-                            controls={!isFullScreen}
-                            videoSrc={data.bucketUrl+data.videoDoumentName}
-                            pausedOverlay={
-                            <img src={data.courseImageName}
-                            alt="student"
-                            style={{
-                              // Make the image expand to cover the video's dimensions
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover',
-                            }}
-                            /> 
-                            }
-                            loadingOverlay={
-                            <div className="loading-overlay">
-                              <div className="loading-spinner" />
-                            </div>}
-                          />
-                          <div className="col">
-                              <h5 className="titlecourse">{data.courseTitle}</h5>
-                              {/* <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> */}
-                            </div>
-                            <div>
-
-                            </div>
-                            <div className="session-time d-flex align-items-center justify-content-between">
-                              <a href="#" className="btn btn-default st-btn rounded justify-content-end"
-                               onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
-                              <Button className='buttonsdownload'
-                                onClick={() => {
-                                  fileDownload(data.videoDoumentName)
-                                }}
-                              >
-                                <img src={download} alt="Student Join" className="addimg" />
-                                Download
-                              </Button>
-                            </div>
-
-                          </div>
-                        </div>
-
-                        <div className="col-md-4">
-                          <div className="feature-db butoonsss">
-
-                            <img src={reactangle1865}
-                              alt="student" className="inactivepdfimage mt-2" />
-
-                            <div className="butoonsss">
-                            <Button className='buttonsdownload mt-2'
-                                 onClick={()=>handleButtonClick(data.educatorId,data.id)}>
-                                  <img src={upload} alt="Student Join" className="addimg" />
-                                  Upload</Button>
-                              <input
-                                type="file"
-                                ref={hiddenFileInput}
-                                style={{ display: 'none' }}
-                                onChange={handleFileChange}
-                              />
+                    //       <div className="feature-db position-relative">
                             
-                            </div>
-                            <div className="butoonsss">
+                    //       <div className="col">
+                    //           <h5 className="titlecourse">{data.courseTitle}</h5>
+                    //           {/* <span className="className-time">{moment(data.scheduledTime).format("YYYY-MM-DD HH:mm:ss")}</span> */}
+                    //         </div>
+                    //         <div>
 
-                              <Button className='buttonsdownload mt-2 mb-2'
-                                onClick={() => {
-                                  fileDownload(data.pdfDocumentName)
-                                }}
-                              >
-                                <img src={download} alt="Student Join" className="addimg" />
-                                Download
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    //         </div>
+                    //         <div className="session-time d-flex align-items-center justify-content-between">
+                    //           <a href="#" className="btn btn-default st-btn rounded justify-content-end"
+                    //            onClick={() => window.open("https://meet.google.com/kpa-ofau-ihw?authuser=0")}>Join <img src={materialsymbolsvideocamerafront} alt="Student Join" className="img-fluid" /></a>
+                    //           <Button className='buttonsdownload'
+                    //             onClick={() => {
+                    //               fileDownload(data.videoDoumentName)
+                    //             }}
+                    //           >
+                    //             <img src={download} alt="Student Join" className="addimg" />
+                    //             Download
+                    //           </Button>
+                    //         </div>
 
-                    </div>
+                    //       </div>
+                    //     </div>
+
+                    //     <div className="col-md-4">
+                    //       <div className="feature-db butoonsss">
+
+                    //         <img src={reactangle1865}
+                    //           alt="student" className="inactivepdfimage mt-2" />
+
+                    //         <div className="butoonsss">
+                    //         <Button className='buttonsdownload mt-2'
+                    //              onClick={()=>handleButtonClick(data.educatorId,data.id)}>
+                    //               <img src={upload} alt="Student Join" className="addimg" />
+                    //               Upload</Button>
+                    //           <input
+                    //             type="file"
+                    //             ref={hiddenFileInput}
+                    //             style={{ display: 'none' }}
+                    //             onChange={handleFileChange}
+                    //           />
+                            
+                    //         </div>
+                    //         <div className="butoonsss">
+
+                    //           <Button className='buttonsdownload mt-2 mb-2'
+                    //             onClick={() => {
+                    //               fileDownload(data.pdfDocumentName)
+                    //             }}
+                    //           >
+                    //             <img src={download} alt="Student Join" className="addimg" />
+                    //             Download
+                    //           </Button>
+                    //         </div>
+                    //       </div>
+                    //     </div>
+                    //   </div>
+
+                    // </div>
 
                   )
                 })}
@@ -419,29 +373,17 @@ function Studentdashboard() {
 
         <section id="popular-db" className="popular-db pt-0">
           <div className="container">
-            <div className="row">
+            <div className="row" >
               <div className="col-md-12">
                 <h2 className="fs-4 mb-4"><u>Upcoming Sessions</u></h2>
               </div>
             </div>
-            <div className="row student-wrap px-4">
+            <div className="row student-wrap px-4" style={{ backgroundColor: 'lightgrey' }}>
               {/* <Popularcourses /> */}
               {courselist.map((data) => {
                 return (
-                  <div key={data.course} className="col-md-4 mb-4">
-                    <div className="popular-feature-db position-relative">
-                      <div className="popular-icon-db d-flex align-items-center">
-                        <img src={data.courseImageName} alt="student" className="img-fluid me-3" />
-                        <div className="popular-content">
-                          <h5 className="mb-0">{data.courseTitle}</h5>
-                        </div>
-                      </div>
-                      <div className="popular-time d-flex align-items-center justify-content-between">
-                        <div className="star-rating"><span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="bi bi-star-fill"></span> <span className="rating-count ms-1">5.0</span></div>
-                        <div className="view-btn"><a href="#" className="btn btn-default st-btn rounded justify-content-end">View</a> </div>
-                      </div>
-                    </div>
-                  </div>
+                  <Card key={data.course} courseImageName={data.courseImageName} 
+                    title={data.courseTitle} isUpcomingSession/>
                 )
               })}
 

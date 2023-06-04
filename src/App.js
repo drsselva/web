@@ -15,6 +15,7 @@ import WebappDevelopment from './views/webappdevelopment/WebappDevelopment';
 import Mobiledevelopment from './views/mobiledevelopment/Mobiledevelopment';
 import Outsourcedevelopment from './views/outsourceddevelopment/Outsourcedevelopment';
 import Mobilefirst from './views/mobilefirst/Mobilefirst';
+import VideoPlayer from './views/VideoPlayer/VideoPlayer';
 import Blockchain from './views/Blockchain/Blockchain';
 import Nft from './views/nft/Nft';
 import Contactus from './views/contactus/Contactus';
@@ -52,6 +53,7 @@ function App() {
 
 
         <Route exact path='/studentdashboard' element={<Studentdashboard />} />
+        <Route exact path='/videoplayer' element={<VideoPlayer />} />
         <Route exact path='/Editprofile' element={<Editprofile />} />
 
         <Route exact path='/EditProStudent' element={<EditProStudent />} />
