@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.10d8f408.css",
-    "main.js": "/static/js/main.a4d7b37d.js",
+    "main.js": "/static/js/main.24e9ded6.js",
     "static/js/787.69cd835b.chunk.js": "/static/js/787.69cd835b.chunk.js",
     "static/media/gordon.svg": "/static/media/gordon.71c522ee4b98d9a5ddf30d884f427314.svg",
     "static/media/starting-a-business-projectpana-1.svg": "/static/media/starting-a-business-projectpana-1.436664b2e0bebf5b9f175f0143bceb97.svg",
@@ -31,6 +31,7 @@
     "static/media/ellipse.png": "/static/media/ellipse.975b1ab1523eb358288e.png",
     "static/media/stundent.svg": "/static/media/stundent.5064f87b7e867ed204deaae699ce4217.svg",
     "static/media/rectangle18342.png": "/static/media/rectangle18342.75477e1999f9a0507cba.png",
+    "static/media/videoplayer.svg": "/static/media/videoplayer.ea351d6d67b8760a55ff95ebc3bca63c.svg",
     "static/media/teacher.svg": "/static/media/teacher.7fc0be72172a246e61b1d01a7334e6a2.svg",
     "static/media/client-5.png": "/static/media/client-5.cb9fb1d240117e418a47.png",
     "static/media/partner2.png": "/static/media/partner2.ca916ff2876f696d0985.png",
@@ -78,11 +79,11 @@
     "static/media/vector-89.svg": "/static/media/vector-89.848f5d2d98352e551c38484660b7c394.svg",
     "static/media/cta-bg.html": "/static/media/cta-bg.da4037b53a6054e93c1e.html",
     "main.10d8f408.css.map": "/static/css/main.10d8f408.css.map",
-    "main.a4d7b37d.js.map": "/static/js/main.a4d7b37d.js.map",
+    "main.24e9ded6.js.map": "/static/js/main.24e9ded6.js.map",
     "787.69cd835b.chunk.js.map": "/static/js/787.69cd835b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.10d8f408.css",
-    "static/js/main.a4d7b37d.js"
+    "static/js/main.24e9ded6.js"
   ]
 }
