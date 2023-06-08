@@ -11,6 +11,7 @@ import GettingStarted from './views/gettingstarted/GettingStarted';
 import Createcourse from './views/createcourse/Createcourse';
 import Marketplace from './views/marketplace/Marketplace';
 import Gritlasshome from './views/gritlasshome/Gritlasshome';
+import Gritlaas from './views/gritlaas/Gritlaas';
 import WebappDevelopment from './views/webappdevelopment/WebappDevelopment';
 import Mobiledevelopment from './views/mobiledevelopment/Mobiledevelopment';
 import Outsourcedevelopment from './views/outsourceddevelopment/Outsourcedevelopment';
@@ -47,7 +48,9 @@ function App() {
       <ToastContainer />
 
       <Routes >
-        <Route exact path='/' element={<Gritlasshome />} />
+        <Route exact path='/gritlasshome' element={<Gritlasshome />} />
+
+        <Route exact path='/' element={<Gritlaas />} />
 
         <Route exact path='/studentlogin' element={<Studentlogin />} />
 
