@@ -43,7 +43,7 @@ function Gritlaas() {
                 <li><a onClick={() => Navigate("/gritlasshome")}>B2B</a></li> 
                {/* <li><a onClick={() => Navigate("/studentlogin")}>Learner</a></li>
                <li><a onClick={() => Navigate("/educatorlogin")}>Educator</a></li> */}
-               <li><a href="https://www.gritdigitech.com/market.html">Marketplace</a></li>
+               <li><a href="https://www.gritdigitech.com/market.html">Buy Courses</a></li>
                <li><a href="https://www.gritdigitech.com/adminlogin.html">Admin</a></li> 
 
             </ul>
