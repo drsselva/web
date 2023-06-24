@@ -53,7 +53,7 @@ function Studentdashboard() {
 
   const field = {
     type: "Learner Dashboard",
-    content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
+    content: "Gritians possess an indomitable spirit. Earning success in the trenches through hard work",
     route: [{ name: "Home", route: "/studentdashboard" }, { name: "Logout", route: "/" }]
   }
 

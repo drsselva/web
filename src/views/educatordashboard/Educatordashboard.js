@@ -41,7 +41,7 @@ function Educatordashboard({ history }) {
 
   const field = {
     type: "Educator Dashboard",
-    content: "Gritians possess an indomitable spirit . Earning success in the trenches through hard work",
+    content: "Gritians possess an indomitable spirit. Earning success in the trenches through hard work",
     route: [{ name: "Home", route: "/educatordashboard" },
     { name: "Logout", route: "/" }]
   }
