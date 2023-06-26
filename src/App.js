@@ -51,7 +51,7 @@ function App() {
         <Route exact path='/gritlasshome' element={<Gritlasshome />} />
 
         <Route exact path='/' element={<Gritlaas />} />
-        <Route exact path='/gritlaas' element={<Gritlaas />} />
+       <Route exact path='/gritlaas' element={<Gritlaas />} />
 
         <Route exact path='/studentlogin' element={<Studentlogin />} />
 

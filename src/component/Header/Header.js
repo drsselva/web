@@ -100,7 +100,7 @@ function Header() {
                <ul>
                   {/* {!eduCheck ? <li onClick={() => Navigate("/educatorlogin")}><a href="#">Educator</a></li> : <li onClick={() => Navigate("/studentlogin")}><a href="#">Learner</a></li>} */}
 
-                  { <li onClick={() => Navigate("/gritlaas")}><a href=""> Home</a></li> }
+                  { <li onClick={() => Navigate("/")}><a href=""> Home</a></li> }
                   {getprofiles || getuserid ? <li onClick={() => logoutt()}><a href="#">Logout</a></li> :
                      null
                   }
