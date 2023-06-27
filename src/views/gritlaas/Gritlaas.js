@@ -34,13 +34,13 @@ function Gritlaas() {
       <header id="header" class="header d-flex align-items-center">
 
         <div class="container container-xl d-flex align-items-center justify-content-between">
-          <a href="#" class="logo d-flex align-items-center">
+          <a href="https://www.gritdigitech.com/" class="logo d-flex align-items-center">
             <img src={logoicon} class="me-2" alt="logo" title="" width="64" height="64" />
             <h1 class="logo-title mt-1"><span class="default-color">GR</span><span class="secondary-color">IT</span> <span class="link-color">Studies</span></h1>
           </a>
           <nav id="navbar" class="navbar">
             <ul>
-                <li><a onClick={() => Navigate("/gritlasshome")}>B2B-Demo</a></li> 
+                {/* <li><a onClick={() => Navigate("/gritlasshome")}>B2B-Demo</a></li>  */}
                {/* <li><a onClick={() => Navigate("/studentlogin")}>Learner</a></li>
                <li><a onClick={() => Navigate("/educatorlogin")}>Educator</a></li> */}
                <li><a href="https://www.gritdigitech.com/market1.html">Buy Courses</a></li>
