@@ -40,7 +40,7 @@ function Gritlaas() {
           </a>
           <nav id="navbar" class="navbar">
             <ul>
-                {/* <li><a onClick={() => Navigate("/gritlasshome")}>B2B-Demo</a></li>  */}
+                
                {/* <li><a onClick={() => Navigate("/studentlogin")}>Learner</a></li>
                <li><a onClick={() => Navigate("/educatorlogin")}>Educator</a></li> */}
                <li><a href="https://www.gritdigitech.com/market1.html">Buy Courses</a></li>
