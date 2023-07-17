@@ -106,8 +106,8 @@ function Educatorsignup() {
       else if (values.password.length < 7) {
          errors.password = "Password must be more than 7 characters";
       }
-      else if (values.password.length > 10) {
-         errors.password = "Password cannot exceed more than 10 characters";
+      else if (values.password.length > 20) {
+         errors.password = "Password cannot exceed more than 20 characters";
       }
       if (!values.confirmpassword) {
          errors.password = "Confirm Password is required";
